@@ -1,5 +1,18 @@
+html {
+  --blue: #031a6b;
+  --yellow: #ffc100;
+}
+
 .App {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+.container80 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }

@@ -3,12 +3,17 @@ html {
   --yellow: #ffc100;
 }
 
-.App {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.App {
   cursor: pointer;
   font-family: sans-serif;
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
 }
 
 .container80 {

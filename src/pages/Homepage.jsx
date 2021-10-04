@@ -1,12 +1,14 @@
 
-import Header from "../components/Header"
 import styled from "styled-components";
+import AboutUs from "../components/AboutUs";
+import HeroVideo from "../components/HeroVideo";
+import OfferComponent from "../components/Offer";
+
+
 
 const HomepageContainer = styled.main`
-
 display: grid;
-grid-template-rows: 100px 1fr 100px;
-
+grid-template-rows: 1fr 750px 400px 1fr 100px 1fr;
 
 `
 
@@ -19,7 +21,9 @@ grid-template-rows: 100px 1fr 100px;
 function Homepage(){
     return(
         <HomepageContainer>
-        <Header/>
+         <HeroVideo/>
+        <AboutUs/>
+        <OfferComponent/>
         </HomepageContainer>
     )
 }

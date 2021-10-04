@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import {FaHome} from "react-icons/fa";
 import {HiOutlineMail} from "react-icons/hi"
+import Logo from "../images/logo_activelife.png"
 
 const HeaderContainer = styled.header`
+
 display: grid;
 grid-template-columns: 2fr 8fr 2fr;
 place-items: center;
@@ -12,9 +14,9 @@ z-index: 10;
 background-color: white;
 
 
-
 img{
-    width: 50px; 
+    width: 144px;
+    height: 70px; 
 }
 
 li{
@@ -62,8 +64,9 @@ const NavButtons = styled.a`
 
 function Header(){
     return(
-        <HeaderContainer className="container80">
-           <img src="../images/logo_activelife.png" />
+        <HeaderContainer>
+        
+           <img src={Logo} alt="logo"/>
          
             <nav>
                <ul>
@@ -92,7 +95,7 @@ function Header(){
             </ul>
          
 
-
+   
           
         </HeaderContainer>
     )

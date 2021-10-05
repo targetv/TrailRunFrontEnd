@@ -6,6 +6,9 @@ import OfferComponent from "../components/Offer";
 import RegistrationComponent from "../components/Registration";
 import SponsorsComponent from "../components/Sponsors";
 import GoogleMaps from "../components/Googlemaps";
+import Modal from "../components/modal";
+import { useState } from "react";
+
 
 
 
@@ -13,6 +16,8 @@ import GoogleMaps from "../components/Googlemaps";
 const HomepageContainer = styled.main`
 display: grid;
 grid-template-rows: 1fr 750px 400px 600px 300px 600px;
+
+
 
 `
 
@@ -22,9 +27,11 @@ grid-template-rows: 1fr 750px 400px 600px 300px 600px;
 
 
 
-function Homepage(){
+function Homepage({modalOn, setModal}){
+
     return(
-        <HomepageContainer>
+        <>
+        <HomepageContainer >
          <HeroVideo/>
         <AboutUs/>
         <OfferComponent/>
@@ -32,6 +39,9 @@ function Homepage(){
         <SponsorsComponent/>
         <GoogleMaps/>
         </HomepageContainer>
+        {modalOn && <Modal modalOn={modalOn} setModal={setModal}/>}
+        
+        </>
     )
 }
 

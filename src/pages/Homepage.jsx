@@ -4,12 +4,13 @@ import AboutUs from "../components/AboutUs";
 import HeroVideo from "../components/HeroVideo";
 import OfferComponent from "../components/Offer";
 import RegistrationComponent from "../components/Registration";
+import SponsorsComponent from "../components/Sponsors";
 
 
 
 const HomepageContainer = styled.main`
 display: grid;
-grid-template-rows: 1fr 750px 400px 600px 100px 1fr;
+grid-template-rows: 1fr 750px 400px 600px 300px 1fr;
 
 `
 
@@ -26,6 +27,7 @@ function Homepage(){
         <AboutUs/>
         <OfferComponent/>
         <RegistrationComponent/>
+        <SponsorsComponent/>
         </HomepageContainer>
     )
 }

@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { Button } from "./Button";
 
+
+
+
+
+
+
 const RegistrationSection = styled.section`
 
 display: grid;
@@ -85,6 +91,7 @@ function RegistrationComponent(){
                 </div>
             </div>
 
+           
         </RegistrationSection>
        
 

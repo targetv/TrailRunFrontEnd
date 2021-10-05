@@ -37,7 +37,7 @@ p{
 
 function AboutUs(){
     return(
-        <AboutUsContainer className="container80">
+        <AboutUsContainer className="container80" id="aboutUs">
         <div className="aboutUsInformation">
             <h2>About Us</h2>
             <h3>ARC 21/279</h3>

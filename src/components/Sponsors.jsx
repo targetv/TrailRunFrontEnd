@@ -47,7 +47,7 @@ height: 100%;
 
 function SponsorsComponent() {
     return(
-        <SliderContainer>
+        <SliderContainer id="sponsors">
         <Swiper className="slider" pagination={{"dynamicBullets": true}} navigation slidesPerView={1} spaceBetween={30} centeredSlides={true} autoplay={{'delay': 8000, "disableOnInteraction": false}}>
            <SwiperSlide className="slide">
                <h3>La Chocolatrice Chocolate Factory + Shop</h3>

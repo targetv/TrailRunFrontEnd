@@ -56,6 +56,7 @@ ul{
 
 const NavButtons = styled.a`
     color: var(--blue);
+    text-decoration: none;
     :hover{
        color: var(--yellow);
     }
@@ -63,7 +64,7 @@ const NavButtons = styled.a`
 `
 
 
-function Header({setModal}){
+function Header({setModal, modalOn}){
     return(
         <HeaderContainer>
         
@@ -72,20 +73,20 @@ function Header({setModal}){
             <nav>
                <ul>
                    <li>
-                       <NavButtons>About Us</NavButtons>
+                       <NavButtons href="#aboutUs">About Us</NavButtons>
                    </li>
                    <li>
-                       <NavButtons>Sponsors</NavButtons>
+                       <NavButtons href="#sponsors">Sponsors</NavButtons>
                    </li>
                    <li>
-                       <NavButtons>Location</NavButtons>
+                       <NavButtons href="#location">Location</NavButtons>
                    </li>
                    <li>
-                       <NavButtons>Registration</NavButtons>
+                       <NavButtons href="#registraion">Registration</NavButtons>
                    </li>
                </ul>
             </nav>
-            <Button onClick={() => setModal(true)}>Sign In</Button>
+            <Button onClick={() => setModal(!modalOn)}>{modalOn ? "Sign In" : "Sign Out"}</Button>
 
             <ul>
                

@@ -35,7 +35,7 @@ function Homepage({modalOn, setModal}){
          <HeroVideo/>
         <AboutUs/>
         <OfferComponent/>
-        <RegistrationComponent/>
+        <RegistrationComponent />
         <SponsorsComponent/>
         <GoogleMaps/>
         </HomepageContainer>

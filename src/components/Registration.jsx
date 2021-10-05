@@ -59,7 +59,7 @@ h2{
 
 function RegistrationComponent(){
     return(
-        <RegistrationSection className="container80">
+        <RegistrationSection className="container80" id="registraion">
             <h2>Registration</h2>
             <div className="cardsContainer">
                 <div className="card">

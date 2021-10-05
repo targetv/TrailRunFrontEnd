@@ -40,7 +40,7 @@ function GoogleMaps(){
     if(!isLoaded) return "Loading Maps"
     return(
         
-      <div>
+      <div id="location">
         <GoogleMap mapContainerStyle={mapContainerStyle} zoom={15} center={center} options={options}>
             <Marker position={{lat: 54.715492, lng: -1.508682}} icon={{ url: Reigster,  scaledSize: new window.google.maps.Size(30,30), anchor: new window.google.maps.Point(15, 15), origin: new window.google.maps.Point(0,0),}} onClick={() => {
                 setSelected({marker: "form", lat: 54.715492, lng: -1.508682})

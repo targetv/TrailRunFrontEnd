@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminDashboard from "./pages/AdminDashboard";
+import RegistrationForm from "./pages/RegistrationForm";
 
 function App() {
   const [modalOn, setModal] = useState(false);
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <AdminDashboard />
+        </Route>
+        <Route path="/register">
+          <RegistrationForm />
         </Route>
       </Switch>
       <Footer />

@@ -3,7 +3,7 @@ import {FaHome} from "react-icons/fa";
 import {HiOutlineMail} from "react-icons/hi"
 import Logo from "../images/logo_activelife.png"
 import { Button } from "./Button";
-import { useHistory, useParams } from "react-router";
+
 
 
 const HeaderContainer = styled.header`
@@ -68,9 +68,7 @@ const NavButtons = styled.a`
 
 function Header({setModal, modalOn, userLoggedIn}){
 
-    const history = useHistory()
-    const params = useParams()
-    
+
     return(
         <HeaderContainer>
         

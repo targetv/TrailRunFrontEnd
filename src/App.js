@@ -8,10 +8,15 @@ import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   const [modalOn, setModal] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   return (
     <div className={modalOn ? "App modalOn" : "App"}>
-      <Header setModal={setModal} modalOn={modalOn} />
+      <Header
+        setModal={setModal}
+        modalOn={modalOn}
+        userLoggedIn={userLoggedIn}
+      />
       <Switch>
         <Route path="/" exact>
           <Redirect to="/home" />

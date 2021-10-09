@@ -1,15 +1,42 @@
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Homepage from "./pages/Homepage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminDashboard from "./pages/AdminDashboard";
 import RegistrationForm from "./pages/RegistrationForm";
+import Cookies from "js-cookie";
+import { useHistory } from "react-router";
 
 function App() {
   const [modalOn, setModal] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    fetch("http://localhost:3030/ValidateToken", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(token),
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        } else {
+          return false;
+        }
+      })
+      .then((user) => {
+        setUserLoggedIn(user);
+        history.push("/dashboard");
+      });
+  }, []);
 
   return (
     <div className={modalOn ? "App modalOn" : "App"}>
@@ -23,10 +50,14 @@ function App() {
           <Redirect to="/home" />
         </Route>
         <Route path="/home">
-          <Homepage modalOn={modalOn} setModal={setModal} />
+          <Homepage
+            modalOn={modalOn}
+            setModal={setModal}
+            setUserLoggedIn={setUserLoggedIn}
+          />
         </Route>
         <Route path="/dashboard">
-          <AdminDashboard />
+          {userLoggedIn ? <AdminDashboard /> : <Redirect to="/home" />}
         </Route>
         <Route path="/register">
           <RegistrationForm />

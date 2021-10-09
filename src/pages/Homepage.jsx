@@ -27,7 +27,7 @@ grid-template-rows: 1fr 750px 400px 600px 300px 600px;
 
 
 
-function Homepage({modalOn, setModal}){
+function Homepage({modalOn, setModal, setUserLoggedIn}){
 
     return(
         <>
@@ -39,7 +39,7 @@ function Homepage({modalOn, setModal}){
         <SponsorsComponent/>
         <GoogleMaps/>
         </HomepageContainer>
-        {modalOn && <Modal modalOn={modalOn} setModal={setModal}/>}
+        {modalOn && <Modal modalOn={modalOn} setModal={setModal} setUserLoggedIn={setUserLoggedIn}/>}
         
         </>
     )

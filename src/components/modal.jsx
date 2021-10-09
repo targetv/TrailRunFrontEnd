@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FormInput, Button, Form } from './Button';
 import {AiOutlineClose} from "react-icons/ai"
+import { useHistory } from 'react-router';
 
 const ModalBackground = styled.div`
     width: 100vw;
@@ -43,16 +44,56 @@ place-self: center;
 
 
 
-function Modal({modalOn, setModal}) {
+function Modal({modalOn, setModal, setUserLoggedIn}) {
+
+    const [adminLogin, setAdminLogin] = useState({email: "", password: ""})
+
+    const history = useHistory()
+
+
+    const handleChange = (event) => {
+        const eventTarget = event.target;
+        const name = eventTarget.name
+        const value = eventTarget.value
+
+        setAdminLogin({...adminLogin, [name]: value})
+    }
+
+    const  formSubmit = (event) => {
+        event.preventDefault();
+
+         fetch("http://localhost:3030/AdminLogin", {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+                
+            },
+            body: JSON.stringify(adminLogin)
+        }).then(resp => {
+            if(resp.ok){
+                return resp.json()
+            }
+            else{
+                return false;
+            }
+        }).then(user => {
+            setUserLoggedIn(user)
+            setAdminLogin({email: "", password: ""})
+            setModal(false);
+            history.push("/dashboard");
+
+        })
+    }
 
     return (
         <ModalBackground>
         <ModalContainer>
             <a className="iconButton" onClick={() => setModal(false)}><AiOutlineClose className="icon"/></a>
-            <Form>
-                <FormInput placeholder="Email" type="email"/>
-                <FormInput placeholder="Password" type="password"/>
-                <Button>Sign In</Button>
+            <Form onSubmit={formSubmit} >
+                <FormInput placeholder="Email" type="email" name="email" onChange={handleChange} value={adminLogin.email} />
+                <FormInput placeholder="Password" type="password" name="password" onChange={handleChange} value={adminLogin.password}/>
+                <Button onClick={formSubmit}>Sign In</Button>
             </Form>
         </ModalContainer>
         </ModalBackground>

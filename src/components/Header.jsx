@@ -3,6 +3,7 @@ import {FaHome} from "react-icons/fa";
 import {HiOutlineMail} from "react-icons/hi"
 import Logo from "../images/logo_activelife.png"
 import { Button } from "./Button";
+import { useLocation } from "react-router";
 
 
 
@@ -68,13 +69,18 @@ const NavButtons = styled.a`
 
 function Header({setModal, modalOn, userLoggedIn}){
 
+ 
+    const location = useLocation();
+
+    console.log(location)
+  
+
 
     return(
         <HeaderContainer>
         
            <img src={Logo} alt="logo"/>
-         
-            <nav>
+            {location.pathname === "/home" ?  <nav>
                <ul>
                    <li>
                        <NavButtons href="#aboutUs">About Us</NavButtons>
@@ -89,7 +95,8 @@ function Header({setModal, modalOn, userLoggedIn}){
                        <NavButtons href="#registraion">Registration</NavButtons>
                    </li>
                </ul>
-            </nav>
+            </nav> : <h3>Welcome</h3> }
+            
             <Button onClick={() => {
                 setModal(!modalOn)
             }}>{userLoggedIn ? "Sign Out " : "Sign In"}</Button>

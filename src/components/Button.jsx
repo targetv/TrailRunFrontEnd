@@ -45,3 +45,18 @@ export const Form = styled.form`
 
 
 `
+
+export const SmallButton = styled.a`
+padding: 5px;
+background-color: ${props => props.Color || "green"};
+border-radius: 5px 7px;
+color: white;
+
+:hover{
+    background-color: ${props => props.HoverBackground || "White"};
+    border: 1px solid green;
+    color: green;
+}
+
+
+`

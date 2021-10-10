@@ -72,9 +72,7 @@ function Header({setModal, modalOn, userLoggedIn}){
  
     const location = useLocation();
 
-    console.log(location)
   
-
 
     return(
         <HeaderContainer>

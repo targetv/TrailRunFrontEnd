@@ -12,6 +12,7 @@ import { useHistory } from "react-router";
 function App() {
   const [modalOn, setModal] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [cost, setCost] = useState(0);
 
   const history = useHistory();
 
@@ -54,6 +55,8 @@ function App() {
             modalOn={modalOn}
             setModal={setModal}
             setUserLoggedIn={setUserLoggedIn}
+            setCost={setCost}
+            cost={cost}
           />
         </Route>
         <Route path="/dashboard">

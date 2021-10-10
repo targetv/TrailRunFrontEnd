@@ -27,7 +27,7 @@ grid-template-rows: 1fr 750px 400px 600px 300px 600px;
 
 
 
-function Homepage({modalOn, setModal, setUserLoggedIn}){
+function Homepage({modalOn, setModal, setUserLoggedIn, setCost, cost}){
 
     return(
         <>
@@ -35,7 +35,7 @@ function Homepage({modalOn, setModal, setUserLoggedIn}){
          <HeroVideo/>
         <AboutUs/>
         <OfferComponent/>
-        <RegistrationComponent />
+        <RegistrationComponent cost={cost} setCost={setCost}/>
         <SponsorsComponent/>
         <GoogleMaps/>
         </HomepageContainer>

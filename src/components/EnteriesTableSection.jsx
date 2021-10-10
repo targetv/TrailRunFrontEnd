@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CollapsableComponent from './CollapsableComponent';
 
@@ -24,103 +24,29 @@ const EnteriesTableSectionContainer = styled.ul`
 `
 
 
-const fakeUsers = [{email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"}, {email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"},
-{email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"},
-{email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"},
-{email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"},
-{email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"},
-{email: "test@gmail.co.uk",
-firstname: "sean",
-lastname: "davison",
-dob: "15/06/1998",
-address: "mind",
-postcode: "dh",
-telephonenumber: "4434343434343",
-gender : "male",
-ageonraceday: 25,
-shirtsize: "L",
-clubmember: false,
-signature: "davison"}]
 
-// const fetchUsers= async () => {
-//     await fetch("")
-// }
+
 
 
 
 function EnteriesTableSection() {
 
+    const [enteries, setEnteries] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:3030/getenteries", {
+            method: "GET",
+           credentials: "include"
+        }).then(resp => resp.json()).then(data => setEnteries(data))
+    },[])
+
+    console.log(enteries)
+
      
     
     return (
         <EnteriesTableSectionContainer>
-            {fakeUsers.map(user => {
+            {enteries.map(user => {
                 return(
                   <CollapsableComponent user={user}/>
                 )

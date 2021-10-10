@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Button } from "./Button";
+import { useHistory } from "react-router";
 
 
 
@@ -53,11 +54,27 @@ h2{
         border-radius: 50%;
         font-size: 1.5rem;
     }
+
+    .none{
+        display: none;
+    }
 }
 
 `
 
-function RegistrationComponent(){
+function RegistrationComponent({cost,  setCost}){
+
+    const history = useHistory();
+
+    const priceSelect = (event) => {
+        const price =  Number(event.target.lastChild.innerHTML);
+        setCost(price)
+        history.push("/register")
+
+
+    }
+
+
     return(
         <RegistrationSection className="container80" id="registraion">
             <h2>Registration</h2>
@@ -69,7 +86,7 @@ function RegistrationComponent(){
                         <li>Entry</li>
                         <li>Trail Run T-shirt</li>
                     </ul>
-                    <Button>Register</Button>
+                    <Button onClick={priceSelect}>Register <span className="none">10</span></Button>
                 </div>
                 <div className="card">
                     <h3>None Club Member</h3>
@@ -78,7 +95,7 @@ function RegistrationComponent(){
                         <li>Entry</li>
                         <li>Trail Run T-shirt</li>
                     </ul>
-                    <Button>Register</Button>
+                    <Button onClick={priceSelect}>Register <span className="none">12</span></Button>
                 </div>
                 <div className="card">
                 <h3>On The Day</h3>
@@ -87,7 +104,7 @@ function RegistrationComponent(){
                         <li>Entry</li>
                         <li>Trail Run T-shirt</li>
                     </ul>
-                    <Button>Register</Button>
+                
                 </div>
             </div>
 

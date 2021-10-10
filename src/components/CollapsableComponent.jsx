@@ -88,15 +88,7 @@ function CollapsableComponent({user}) {
                         </tr>
 
                     </table>
-                    {/* <p>{user.dob}</p>
-                    <p>{user.address}</p>
-                    <p>{user.postcode}</p>
-                    <p>{user.telephonenumber}</p>
-                    <p>{user.gender}</p>
-                    <p>{user.ageonraceday}</p>
-                    <p>{user.shirtsize}</p>
-                    <p>{user.clubmember}</p>
-                    <p>{user.signature}</p> */}
+                   
                     </div>
                     </UserToDisplay>
     );

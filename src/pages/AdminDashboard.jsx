@@ -18,6 +18,7 @@ const AdminDashboardContainer = styled.main`
 function AdminDashboard(props) {
 
     const [dashboardData , setDashboardData] = useState({enteries: 289, failedpayments: 4, earned: 2500})
+    
 
     return (
        <AdminDashboardContainer className="container80">

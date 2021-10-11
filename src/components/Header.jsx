@@ -3,7 +3,7 @@ import {FaHome} from "react-icons/fa";
 import {HiOutlineMail} from "react-icons/hi"
 import Logo from "../images/logo_activelife.png"
 import { Button } from "./Button";
-import { useLocation } from "react-router";
+import { useLocation, useHistory } from "react-router";
 
 
 
@@ -71,7 +71,7 @@ function Header({setModal, modalOn, userLoggedIn}){
 
  
     const location = useLocation();
-
+    const history = useHistory();
 
 
   
@@ -104,7 +104,7 @@ function Header({setModal, modalOn, userLoggedIn}){
             <ul>
                
                 <li>
-                    <FaHome className="icon fillBlue"/>
+                    <a onClick={() => {history.push("/")}}><FaHome className="icon fillBlue"/></a>
                 </li>
                 <li>
                     <HiOutlineMail className="icon outlineBlue"/>

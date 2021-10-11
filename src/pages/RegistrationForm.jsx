@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { FormInput, Button } from '../components/Button';
+import { FormInput, Button} from '../components/Button';
+
+import { TextField, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Stack, Autocomplete} from '@mui/material';
+
+
+
 
 const FormContainer = styled.section`
 display: grid;
 background-color: white;
 width: 50%;
-height: 80%;
 overflow: scroll;
 grid-template-rows: auto;
 grid-gap: 20px;
@@ -24,13 +29,14 @@ h3{
 
 const FormBackGround = styled.div`
 background-color: lightgrey;
-height: calc(100vh - 175px);
+height: 100vh;
 display: grid;
 place-items: center;
+overflow: scroll;
+
 
 
 `
-
 
 const RegisterForm = styled.form`
 padding: 20px;
@@ -38,9 +44,6 @@ display: grid;
 grid-template-rows: repeat(6, minmax(50px, 1fr));
 grid-gap: 20px;
 justify-items: center;
-
-
-
 
 .width50{
     width: 50%;
@@ -58,43 +61,24 @@ justify-items: center;
     
 }
 
-.radioButtons{
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-    place-items: start;
-
-}
 
 .twoInputCol{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
     grid-gap: 10px;
+    width: 50%;
 }
-
-.radioContainer{
-    border: 1px solid lightgrey;
-    padding: 20px;
-    border-radius: 10px;
-    
-
-    h4{
-        font-size: 1.2rem;
-    }
-}
-
-.tshirtRadio{
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-}
-
 
 
 `
 
 function RegistrationForm() {
+
+    const history = useHistory();
+
+
+    
 
     const [form, setForm] = useState({
         firstname: "",
@@ -120,6 +104,7 @@ function RegistrationForm() {
 
     }
 
+    const tShirtSizes = ["M","L"];
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -149,6 +134,7 @@ function RegistrationForm() {
                     signature: "test"
               
             })
+            history.push("/order");
 
             }
             else if (resp.status === 501){
@@ -168,46 +154,44 @@ function RegistrationForm() {
         <FormBackGround>
         <FormContainer className="container80">
             <h3>Coxhoe Trail Run Registration</h3>
-            <RegisterForm onSubmit={handleSubmit}>
-                <FormInput  placeholder="First Name" className="width50" name="firstname" required type="text" onChange={handleChange}/>
-                <FormInput  placeholder="Last Name" className="width50" name="lastname" required type="text" onChange={handleChange}/>
-                <FormInput className="width50" type="email" name="email" required placeholder="Email" onChange={handleChange}/>
-
-           
-                <div className="ColInputs width50">
-                <label for="dob">D.O.B</label>
-                <FormInput  type="date" name="dob" onChange={handleChange}/>
-                </div>
-                <FormInput className="width50" type="text" name="address" required placeholder="Address" onChange={handleChange}/>
-                <FormInput className="width50" type="text" name="postcode" required placeholder="Post Code" onChange={handleChange}/>
-                <FormInput className="width50" type="tel" name="telephonenumber" required placeholder="Telephone Number" onChange={handleChange}/>
+            <RegisterForm onSubmit={handleSubmit} noValidate>
+            <TextField required id="outlined-default" label="First Name" variant="outlined"  className="width50" onChange={handleChange} name="firstname" type="text"/>
+            <TextField required id="outlined-default" label="Last Name" variant="outlined" className="width50" onChange={handleChange} name="lastname" type="text"/>
+            <TextField required id="outlined-default" label="Email" variant="outlined" className="width50" onChange={handleChange} name="email" type="email"/>
+            <div className="twoInputCol">
+            <TextField required name="dob"  onChange={handleChange} type="date" onChange={handleChange} />    
+            <TextField required id="outlined-default" label="Age On Race Day" variant="outlined" type="text" name="ageonraceday" onChange={handleChange} />
+            </div>
+            <TextField required id="outlined-default" label="Address" variant="outlined" type="text" name="address" onChange={handleChange} className="width50"/>  
+            <TextField required id="outlined-default" label="PostCode" variant="outlined" type="text" name="postcode" onChange={handleChange} className="width50"/>
+            <TextField required id="outlined-default" label="Telephone Number" variant="outlined" type="text" name="telephonenumber" onChange={handleChange} className="width50"/>
                 <div className="twoInputCol">
-                <div className="radioContainer">
-                <h4 >Are You</h4>
-                <div className="radioButtons">
-                <FormInput type="radio" name="gender" value="male" onChange={handleChange}/>
-                <label htmlFor="male">Male</label>
-                <FormInput type="radio" name="gender" value="female" onChange={handleChange}/>
-                <label htmlFor="female">Female</label>
+                <FormControl component="fieldset">
+  <FormLabel component="legend">Gender</FormLabel>
+  <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+    <FormControlLabel value="female" name="gender" control={<Radio />} label="Female" onChange={handleChange} />
+    <FormControlLabel value="male" name="gender" control={<Radio />} label="Male" onChange={handleChange} />
+  </RadioGroup>
+</FormControl>
+
+<Autocomplete
+       options={tShirtSizes}
+       disablePortal
+       
+        id="combo-box-demo"
+        value={form.shirtsize}
+        onChange={(event, newValue) => {
+          setForm({...form, shirtsize: newValue})
+        }}
+        renderInput={(params) => (
+          <TextField {...params} label="T-shirt Size"  name="shirtsize" />
+        )}
+      />
+
+
                 </div>
-                </div>
-                <div className="radioContainer">
-                <h4>T-shirt Size</h4>
-                <div className="tshirtRadio">
-                <FormInput type="radio" name="shirtsize" value="S" onChange={handleChange} />
-                <label htmlFor="S">S</label>
-                <FormInput type="radio" name="shirtsize" value="M" onChange={handleChange} />
-                <label htmlFor="M">M</label>
-                <FormInput type="radio" name="shirtsize" value="L" onChange={handleChange} />
-                <label htmlFor="L">L</label>
-                <FormInput type="radio" name="shirtsize" value="XL" onChange={handleChange} />
-                <label htmlFor="XL">Xl</label>
-                <FormInput type="radio" name="shirtsize" value="XXL" onChange={handleChange} />
-                <label htmlFor="XXL">XXL</label>
-                </div>
-                </div>
-                </div>
-                <FormInput type="text" name="ageonraceday" placeholder="Age On Race Day" className="width50" onChange={handleChange}/>
+             
+                
                 <Button onClick={handleSubmit}>Submit</Button>
                 
             </RegisterForm>

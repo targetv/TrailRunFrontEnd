@@ -6,8 +6,11 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminDashboard from "./pages/AdminDashboard";
 import RegistrationForm from "./pages/RegistrationForm";
+
+import Order from "./pages/Order";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function App() {
   const [modalOn, setModal] = useState(false);
@@ -57,6 +60,12 @@ function App() {
             setUserLoggedIn={setUserLoggedIn}
             setCost={setCost}
             cost={cost}
+          />
+        </Route>
+        <Route path="/order">
+          <Order
+            PayPalScriptProvider={PayPalScriptProvider}
+            PayPalButtons={PayPalButtons}
           />
         </Route>
         <Route path="/dashboard">

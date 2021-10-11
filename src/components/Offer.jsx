@@ -12,6 +12,11 @@ const OfferSection = styled.section`
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
     height: 100%;
+
+    @media screen and (max-width: 700px){
+        grid-template-rows: auto;
+        grid-gap: 20px;s
+    }
  }
 
  .icon{

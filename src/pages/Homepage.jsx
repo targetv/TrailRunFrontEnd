@@ -17,6 +17,11 @@ const HomepageContainer = styled.main`
 display: grid;
 grid-template-rows: 1fr 750px 400px 600px 300px 600px;
 
+@media screen and (max-width: 700px){
+    grid-template-rows: 1fr 1fr 1fr 1100px 300px 1fr;
+}
+
+
 
 
 `

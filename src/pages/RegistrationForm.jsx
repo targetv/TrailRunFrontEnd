@@ -10,11 +10,16 @@ import { TextField, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio,
 
 const FormContainer = styled.section`
 display: grid;
-background-color: white;
 width: 50%;
-overflow: scroll;
 grid-template-rows: auto;
 grid-gap: 20px;
+height: 100vh;
+
+@media screen and (max-width: 700px){
+    width: 80%;
+}
+  
+
 
 h3{
     place-self: center;
@@ -22,6 +27,8 @@ h3{
     padding-top: 20px;
     color: var(--blue);
 }
+
+
  
    
 
@@ -36,6 +43,7 @@ overflow: scroll;
 
 
 
+
 `
 
 const RegisterForm = styled.form`
@@ -44,10 +52,25 @@ display: grid;
 grid-template-rows: repeat(6, minmax(50px, 1fr));
 grid-gap: 20px;
 justify-items: center;
+height: 100%;
+background-color: white;
+
+@media screen and (max-width: 700px){
+    grid-template-rows: repeat(6, minmax(50px, 1fr));
+    
+    grid-gap: 10px;
+    align-items: center;
+    
+}
 
 .width50{
     width: 50%;
-    height: 50px;
+    height: 100%;
+
+    @media screen and (max-width: 700px){
+        width: 80%;
+       
+    }
 }
 
 .ColInputs{
@@ -67,7 +90,11 @@ justify-items: center;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
     grid-gap: 10px;
-    width: 50%;
+    width: 60%;
+    @media screen and (max-width: 700px){
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
 }
 
 

@@ -6,16 +6,26 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminDashboard from "./pages/AdminDashboard";
 import RegistrationForm from "./pages/RegistrationForm";
+import PaymentFailed from "./pages/PaymentFailed";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 import Order from "./pages/Order";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  PayPalButtonsComponentProps,
+} from "@paypal/react-paypal-js";
 
 function App() {
   const [modalOn, setModal] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  // Product Id State
   const [cost, setCost] = useState(0);
+
+  const [orderId, setOrderId] = useState(0);
 
   const history = useHistory();
 
@@ -66,13 +76,21 @@ function App() {
           <Order
             PayPalScriptProvider={PayPalScriptProvider}
             PayPalButtons={PayPalButtons}
+            orderId={orderId}
+            setOrderId={setOrderId}
           />
         </Route>
         <Route path="/dashboard">
           {userLoggedIn ? <AdminDashboard /> : <Redirect to="/home" />}
         </Route>
         <Route path="/register">
-          <RegistrationForm />
+          <RegistrationForm cost={cost} setOrderId={setOrderId} />
+        </Route>
+        <Route path="/paymentsuccess">
+          <PaymentSuccess />
+        </Route>
+        <Route path="/paymentfailed">
+          <PaymentFailed />
         </Route>
       </Switch>
       <Footer />

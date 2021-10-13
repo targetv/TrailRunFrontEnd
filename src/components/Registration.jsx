@@ -86,7 +86,7 @@ function RegistrationComponent({cost,  setCost}){
                         <li>Entry</li>
                         <li>Trail Run T-shirt</li>
                     </ul>
-                    <Button onClick={priceSelect}>Register <span className="none">10</span></Button>
+                    <Button onClick={priceSelect}>Register <span className="none">2</span></Button>
                 </div>
                 <div className="card">
                     <h3>None Club Member</h3>
@@ -95,7 +95,7 @@ function RegistrationComponent({cost,  setCost}){
                         <li>Entry</li>
                         <li>Trail Run T-shirt</li>
                     </ul>
-                    <Button onClick={priceSelect}>Register <span className="none">12</span></Button>
+                    <Button onClick={priceSelect}>Register <span className="none">1</span></Button>
                 </div>
                 <div className="card">
                 <h3>On The Day</h3>

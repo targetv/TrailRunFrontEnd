@@ -100,12 +100,12 @@ background-color: white;
 
 `
 
-function RegistrationForm() {
+function RegistrationForm({cost, setOrderId}) {
 
     const history = useHistory();
 
-
     
+
 
     const [form, setForm] = useState({
         firstname: "",
@@ -145,7 +145,6 @@ function RegistrationForm() {
             body: JSON.stringify(form)
         }).then(resp => {
             if(resp.ok){
-                console.log("success")
                 setForm({
                     firstname: "",
                     lastname: "",
@@ -161,17 +160,28 @@ function RegistrationForm() {
                     signature: "test"
               
             })
-            history.push("/order");
-
+            return resp.json();
+           
             }
             else if (resp.status === 501){
                 console.log("User already exists")
-            
             }
             else{
                 console.log(resp)
             }
-        })
+        }).then(data => {
+            fetch("http://localhost:3030/save-order", {
+                    credentials: 'include',
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({userid: data, productid: cost})
+                }).then(resp => resp.json()).then(order => { 
+                    setOrderId(order) 
+                    history.push("/order")})
+            }
+        )
 
     }
  

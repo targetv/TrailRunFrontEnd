@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { FormInput, Button} from '../components/Button';
 
-import { TextField, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Stack, Autocomplete} from '@mui/material';
+import { TextField, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Stack, Autocomplete, Alert} from '@mui/material';
 
 
 
@@ -203,9 +203,13 @@ function RegistrationForm({cost, setOrderId}) {
 
     return (
         <FormBackGround>
+            
         <FormContainer className="container80">
+        
             <h3>Coxhoe Trail Run Registration</h3>
+            {userExsits && <Alert severity="error"> User Already Exsists!</Alert> }
             <RegisterForm ref={formRef} onSubmit={handleSubmit}>
+                
             <TextField required id="outlined-error" label="First Name" variant="outlined"  className="width50" onChange={handleChange} name="firstname" type="text"/>
             <TextField required id="outlined-default" label="Last Name" variant="outlined" className="width50" onChange={handleChange} name="lastname" type="text"/>
             {userExsits ? <TextField  error required helperText="User Already Exists" id="outlined-error" label="Email" variant="outlined" className="width50" onChange={handleChange} name="email" type="email"/>: <TextField  required id="outlined-error" label="Email" variant="outlined" className="width50" onChange={handleChange} name="email" type="email"/>}

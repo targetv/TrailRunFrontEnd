@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { FormInput, Button} from '../components/Button';
@@ -104,6 +104,9 @@ function RegistrationForm({cost, setOrderId}) {
 
     const history = useHistory();
 
+    const [userExsits, setUserExists] = useState(false);
+
+    const formRef = useRef();
     
 
 
@@ -133,9 +136,13 @@ function RegistrationForm({cost, setOrderId}) {
 
     const tShirtSizes = ["M","L"];
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
 
+    const handleSubmit = (event) => {
+        if(formRef.current.reportValidity()){
+
+        
+        
+        event.preventDefault();
         fetch("http://localhost:3030/register", {
             credentials: "include",
             method: "POST",
@@ -163,13 +170,16 @@ function RegistrationForm({cost, setOrderId}) {
             return resp.json();
            
             }
-            else if (resp.status === 501){
-                console.log("User already exists")
-            }
-            else{
-                console.log(resp)
-            }
-        }).then(data => {
+
+           else if (resp.status === 406){
+                setUserExists(true);
+                throw new Error('User Exsists')
+           }
+           else{
+               console.log(resp.json());
+           }
+           
+         }).then(data => {
             fetch("http://localhost:3030/save-order", {
                     credentials: 'include',
                     method: "POST",
@@ -181,20 +191,24 @@ function RegistrationForm({cost, setOrderId}) {
                     setOrderId(order) 
                     history.push("/order")})
             }
-        )
+        ).catch((error) => {
+            console.log(error);
+           
+        } )
 
     }
+}
  
-
+    
 
     return (
         <FormBackGround>
         <FormContainer className="container80">
             <h3>Coxhoe Trail Run Registration</h3>
-            <RegisterForm onSubmit={handleSubmit} noValidate>
-            <TextField required id="outlined-default" label="First Name" variant="outlined"  className="width50" onChange={handleChange} name="firstname" type="text"/>
+            <RegisterForm ref={formRef} onSubmit={handleSubmit}>
+            <TextField required id="outlined-error" label="First Name" variant="outlined"  className="width50" onChange={handleChange} name="firstname" type="text"/>
             <TextField required id="outlined-default" label="Last Name" variant="outlined" className="width50" onChange={handleChange} name="lastname" type="text"/>
-            <TextField required id="outlined-default" label="Email" variant="outlined" className="width50" onChange={handleChange} name="email" type="email"/>
+            {userExsits ? <TextField  error required helperText="User Already Exists" id="outlined-error" label="Email" variant="outlined" className="width50" onChange={handleChange} name="email" type="email"/>: <TextField  required id="outlined-error" label="Email" variant="outlined" className="width50" onChange={handleChange} name="email" type="email"/>}
             <div className="twoInputCol">
             <TextField required name="dob"  onChange={handleChange} type="date" onChange={handleChange} />    
             <TextField required id="outlined-default" label="Age On Race Day" variant="outlined" type="text" name="ageonraceday" onChange={handleChange} />

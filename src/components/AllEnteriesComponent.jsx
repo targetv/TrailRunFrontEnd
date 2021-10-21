@@ -3,18 +3,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-function AllEnteriesComponent() {
-  const [enteries, setEnteries] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:3030/getenteries`, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((resp) => resp.json())
-      .then((data) => setEnteries(data));
-  }, [setEnteries]);
-
+function AllEnteriesComponent({ enteries }) {
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "email", headerName: "Email", width: 250, editable: true },

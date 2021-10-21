@@ -24,8 +24,6 @@ function AgeCategoryComponent({ fetchName, num1, num2, gender }) {
       .then((data) => setEnteries(data));
   }, []);
 
-  console.log(enteries);
-
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "firstname", headerName: "First name", width: 130 },

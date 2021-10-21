@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import AdminCardSection from "../components/AdminCardSection";
 
@@ -25,16 +25,20 @@ const CatContainer = styled.div`
 `;
 
 function AdminDashboard(props) {
-  const [dashboardData, setDashboardData] = useState({
-    enteries: 289,
-    failedpayments: 4,
-    earned: 2500,
-  });
+  const [enteries, setEnteries] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3030/getenteries`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((data) => setEnteries(data));
+  }, [setEnteries]);
 
   return (
     <AdminDashboardContainer className="container80">
-      <AdminCardSection dashboardData={dashboardData} />
-      <AllEnteriesComponent />
+      <AdminCardSection enteries={enteries} />
+      <AllEnteriesComponent enteries={enteries} />
       <CatContainer>
         <h3>Mens Overall</h3>
         <AgeCategoryComponent

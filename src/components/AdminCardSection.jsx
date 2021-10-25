@@ -34,21 +34,21 @@ const AdminCard = styled.div`
 `;
 
 function AdminCardSection({ enteries }) {
-  function CountEnteries(status) {
-    const confirmedEnteries = enteries.filter(
-      (entry) => entry.order[0].Payment[0].paymentstatus === status
-    );
-    return confirmedEnteries;
-  }
+  // function CountEnteries(status) {
+  //   const confirmedEnteries = enteries.filter(
+  //     (entry) => entry.order[0].Payment[0].paymentstatus === status
+  //   );
+  //   return confirmedEnteries;
+  // }
 
   return (
     <AdminCardContainer>
       <AdminCard cardColor="#63A46C">
-        <h4>{CountEnteries("COMPLETED").length}</h4>
+        {/* <h4>{CountEnteries("COMPLETED").length}</h4> */}
         <h5>Enteries</h5>
       </AdminCard>
       <AdminCard cardColor="#CD4631">
-        <h4>{CountEnteries("FAILED").length}</h4>
+        {/* <h4>{CountEnteries("FAILED").length}</h4> */}
         <h5>Failed Payments</h5>
       </AdminCard>
       <AdminCard cardColor="#79ADDC">

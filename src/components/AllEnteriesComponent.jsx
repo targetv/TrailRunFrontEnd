@@ -31,26 +31,16 @@ function AllEnteriesComponent({ enteries }) {
     { field: "Signature", headerName: "Signature", width: 130 },
   ];
 
-  console.log(enteries);
+  function UpdateEnteriesOrder() {
+    const updateOrder = enteries.map((entry) => {
+      return { ...entry, order: entry.order[0].Payment[0].paymentstatus };
+    });
+    return updateOrder;
+  }
 
   return (
     <div style={{ height: "350px", width: "100%" }}>
-      <DataGrid
-        columns={columns}
-        rows={enteries}
-        components={{
-          Toolbar: GridToolbar,
-        }}
-        filterModel={{
-          items: [
-            {
-              columnField: "id",
-              operatorValue: "contains",
-              value: "75",
-            },
-          ],
-        }}
-      />
+      <DataGrid columns={columns} rows={enteries} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ Go to the root of the project folder and run the following command `npm i` this 
 
 ## `Step 2`
 
-Create a .env file that contains the following:
+Create a .env file that contains the following in the root of the project:
 
 REACT_APP_GOOGLE_MAPS_API_KEY="YOUR KEY HERE"
 

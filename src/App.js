@@ -28,6 +28,7 @@ function App() {
 
   const apiUrl = process.env.API_URL;
 
+  console.log(apiUrl);
   useEffect(() => {
     const token = Cookies.get("token");
     fetch(`${apiUrl}/ValidateToken`, {

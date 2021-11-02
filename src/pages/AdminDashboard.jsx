@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
@@ -26,8 +27,10 @@ const CatContainer = styled.div`
 
 function AdminDashboard(props) {
   const [enteries, setEnteries] = useState([]);
+
+  const apiUrl = process.env.API_URL;
   useEffect(() => {
-    fetch(`http://localhost:3030/getenteries`, {
+    fetch(`${apiUrl}/getenteries`, {
       method: "GET",
       credentials: "include",
     })

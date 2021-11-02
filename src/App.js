@@ -26,9 +26,11 @@ function App() {
 
   const history = useHistory();
 
+  const apiUrl = process.env.API_URL;
+
   useEffect(() => {
     const token = Cookies.get("token");
-    fetch("http://localhost:3030/ValidateToken", {
+    fetch(`${apiUrl}/ValidateToken`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

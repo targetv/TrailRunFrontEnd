@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
@@ -48,8 +49,10 @@ function Order({ PayPalScriptProvider, PayPalButtons, orderId }) {
   const history = useHistory();
   const [product, setProduct] = useState({});
 
+  const apiUrl = process.env.API_URL;
+
   useEffect(() => {
-    fetch("http://localhost:3030/find-order", {
+    fetch(`${apiUrl}/find-order`, {
       credentials: "include",
       method: "POST",
       headers: {
@@ -73,7 +76,7 @@ function Order({ PayPalScriptProvider, PayPalButtons, orderId }) {
               let orderInformation = null;
               let product = null;
 
-              return fetch("http://localhost:3030/find-order", {
+              return fetch(`${apiUrl}/find-order`, {
                 credentials: "include",
                 method: "POST",
                 headers: {
@@ -86,7 +89,7 @@ function Order({ PayPalScriptProvider, PayPalButtons, orderId }) {
                   orderInformation = data.id;
                   product = data.product;
 
-                  return fetch("http://localhost:3030/create-order", {
+                  return fetch(`${apiUrl}/create-order`, {
                     credentials: "include",
                     method: "POST",
                     headers: {
@@ -132,7 +135,7 @@ function Order({ PayPalScriptProvider, PayPalButtons, orderId }) {
                     order.purchase_units[0].payments.captures[0].links[2].href,
                 };
 
-                fetch("http://localhost:3030/payment-status", {
+                fetch(`${apiUrl}/payment-status`, {
                   credentials: "include",
                   method: "POST",
                   headers: {

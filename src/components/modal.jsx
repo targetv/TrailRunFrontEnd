@@ -38,7 +38,7 @@ const ModalContainer = styled.section`
 
 function Modal({ modalOn, setModal, setUserLoggedIn }) {
   const [adminLogin, setAdminLogin] = useState({ email: "", password: "" });
-
+  const apiUrl = process.env.API_URL;
   const history = useHistory();
 
   const handleChange = (event) => {
@@ -52,7 +52,7 @@ function Modal({ modalOn, setModal, setUserLoggedIn }) {
   const formSubmit = (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:3030/AdminLogin", {
+    fetch(`${apiUrl}/AdminLogin`, {
       credentials: "include",
       method: "POST",
       headers: {

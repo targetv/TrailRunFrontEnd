@@ -6,13 +6,15 @@ import { DataGrid } from "@mui/x-data-grid";
 function AgeCategoryComponent({ fetchName, num1, num2, gender }) {
   const [enteries, setEnteries] = useState([]);
 
+  const apiUrl = process.env.API_URL;
+
   useEffect(() => {
     const agerange = {
       num1: num1,
       num2: num2,
       gender: gender,
     };
-    fetch(`http://localhost:3030/${fetchName}`, {
+    fetch(`${apiUrl}/${fetchName}`, {
       method: "POST",
       credentials: "include",
       headers: {

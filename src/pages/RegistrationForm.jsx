@@ -89,6 +89,7 @@ const RegisterForm = styled.form`
 function RegistrationForm({ cost, setOrderId }) {
   const history = useHistory();
 
+  const apiUrl = process.env.API_URL;
   const [userExsits, setUserExists] = useState(false);
 
   const formRef = useRef();
@@ -120,7 +121,7 @@ function RegistrationForm({ cost, setOrderId }) {
   const handleSubmit = (event) => {
     if (formRef.current.reportValidity()) {
       event.preventDefault();
-      fetch("http://localhost:3030/register", {
+      fetch(`${apiUrl}/register`, {
         credentials: "include",
         method: "POST",
         headers: {
@@ -153,7 +154,7 @@ function RegistrationForm({ cost, setOrderId }) {
           }
         })
         .then((data) => {
-          fetch("http://localhost:3030/save-order", {
+          fetch(`${apiUrl}/save-order`, {
             credentials: "include",
             method: "POST",
             headers: {

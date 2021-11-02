@@ -64,7 +64,8 @@ function Modal({ modalOn, setModal, setUserLoggedIn }) {
         if (resp.ok) {
           return resp.json();
         } else {
-          return false;
+          history.push("/home");
+          return;
         }
       })
       .then((user) => {

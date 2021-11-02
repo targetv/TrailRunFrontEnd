@@ -28,6 +28,7 @@ function App() {
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
+  console.log(apiUrl);
   useEffect(() => {
     const token = Cookies.get("token");
     fetch(`${apiUrl}/ValidateToken`, {
@@ -42,7 +43,7 @@ function App() {
         if (resp.ok) {
           return resp.json();
         } else {
-          return resp.json({ api: apiUrl });
+          return false;
         }
       })
       .then((user) => {

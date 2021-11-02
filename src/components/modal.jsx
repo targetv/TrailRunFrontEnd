@@ -61,10 +61,10 @@ function Modal({ modalOn, setModal, setUserLoggedIn }) {
       body: JSON.stringify(adminLogin),
     })
       .then((resp) => {
-        if (resp.status !== 401) {
+        if (resp.ok) {
           return resp.json();
         } else {
-          return false;
+          return;
         }
       })
       .then((user) => {

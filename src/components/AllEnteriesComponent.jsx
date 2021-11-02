@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useEffect } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import React from "react";
+import { DataGrid } from "@mui/x-data-grid";
 
 function AllEnteriesComponent({ enteries }) {
   const columns = [
@@ -31,12 +29,12 @@ function AllEnteriesComponent({ enteries }) {
     { field: "Signature", headerName: "Signature", width: 130 },
   ];
 
-  function UpdateEnteriesOrder() {
-    const updateOrder = enteries.map((entry) => {
-      return { ...entry, order: entry.order[0].Payment[0].paymentstatus };
-    });
-    return updateOrder;
-  }
+  // function UpdateEnteriesOrder() {
+  //   const updateOrder = enteries.map((entry) => {
+  //     return { ...entry, order: entry.order[0].Payment[0].paymentstatus };
+  //   });
+  //   return updateOrder;
+  // }
 
   return (
     <div style={{ height: "350px", width: "100%" }}>

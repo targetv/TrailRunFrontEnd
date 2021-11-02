@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
 import { useState, useEffect } from "react";
@@ -12,11 +13,7 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 import Order from "./pages/Order";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router";
-import {
-  PayPalScriptProvider,
-  PayPalButtons,
-  PayPalButtonsComponentProps,
-} from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function App() {
   const [modalOn, setModal] = useState(false);

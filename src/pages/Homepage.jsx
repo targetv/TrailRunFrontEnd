@@ -6,7 +6,6 @@ import RegistrationComponent from "../components/Registration";
 import SponsorsComponent from "../components/Sponsors";
 import GoogleMaps from "../components/Googlemaps";
 import Modal from "../components/modal";
-import { useState } from "react";
 
 const HomepageContainer = styled.main`
   display: grid;

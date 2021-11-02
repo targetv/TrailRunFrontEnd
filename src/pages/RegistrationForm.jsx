@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { FormInput, Button } from "../components/Button";
+import { Button } from "../components/Button";
 
 import {
   TextField,
@@ -10,7 +10,6 @@ import {
   FormControlLabel,
   RadioGroup,
   Radio,
-  Stack,
   Autocomplete,
   Alert,
 } from "@mui/material";
@@ -231,7 +230,6 @@ function RegistrationForm({ cost, setOrderId }) {
               name="dob"
               onChange={handleChange}
               type="date"
-              onChange={handleChange}
             />
             <TextField
               required

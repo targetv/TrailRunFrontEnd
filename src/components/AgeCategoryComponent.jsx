@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useEffect } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 function AgeCategoryComponent({ fetchName, num1, num2, gender }) {
   const [enteries, setEnteries] = useState([]);

@@ -61,11 +61,10 @@ function Modal({ modalOn, setModal, setUserLoggedIn }) {
       body: JSON.stringify(adminLogin),
     })
       .then((resp) => {
-        if (resp.ok) {
+        if (resp.status !== 401) {
           return resp.json();
         } else {
-          history.push("/home");
-          return;
+          return false;
         }
       })
       .then((user) => {

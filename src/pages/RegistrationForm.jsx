@@ -116,7 +116,7 @@ function RegistrationForm({ cost, setOrderId }) {
     setForm({ ...form, [name]: value });
   };
 
-  const tShirtSizes = ["M", "L"];
+  const tShirtSizes = ["M", "L", "XL"];
 
   const handleSubmit = (event) => {
     if (formRef.current.reportValidity()) {

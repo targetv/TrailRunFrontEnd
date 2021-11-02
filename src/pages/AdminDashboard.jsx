@@ -28,7 +28,7 @@ const CatContainer = styled.div`
 function AdminDashboard(props) {
   const [enteries, setEnteries] = useState([]);
 
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     fetch(`${apiUrl}/getenteries`, {
       method: "GET",

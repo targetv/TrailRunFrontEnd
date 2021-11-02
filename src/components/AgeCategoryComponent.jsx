@@ -6,7 +6,7 @@ import { DataGrid } from "@mui/x-data-grid";
 function AgeCategoryComponent({ fetchName, num1, num2, gender }) {
   const [enteries, setEnteries] = useState([]);
 
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const agerange = {

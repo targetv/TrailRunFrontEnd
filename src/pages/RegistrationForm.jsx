@@ -89,7 +89,7 @@ const RegisterForm = styled.form`
 function RegistrationForm({ cost, setOrderId }) {
   const history = useHistory();
 
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [userExsits, setUserExists] = useState(false);
 
   const formRef = useRef();

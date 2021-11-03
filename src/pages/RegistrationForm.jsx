@@ -165,6 +165,7 @@ function RegistrationForm({ cost, setOrderId }) {
             .then((resp) => resp.json())
             .then((order) => {
               setOrderId(order);
+              console.log(order);
               history.push("/order");
             });
         })

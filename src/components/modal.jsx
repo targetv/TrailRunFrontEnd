@@ -53,7 +53,6 @@ function Modal({ modalOn, setModal, setUserLoggedIn }) {
     event.preventDefault();
 
     fetch(`${apiUrl}/AdminLogin`, {
-      credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",

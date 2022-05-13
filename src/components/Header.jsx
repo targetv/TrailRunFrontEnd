@@ -5,6 +5,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import Logo from "../images/logo_activelife.png";
 import { Button } from "./Button";
 import { useLocation, useHistory } from "react-router";
+import { rem } from "polished";
 
 const HeaderContainer = styled.header`
   display: grid;
@@ -16,13 +17,13 @@ const HeaderContainer = styled.header`
   background-color: white;
 
   img {
-    width: 144px;
-    height: 70px;
+    width: ${rem("144px")};
+    height: ${rem("70px")};
   }
 
   li {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: ${rem("20px")};
   }
 
   ul {
@@ -31,13 +32,13 @@ const HeaderContainer = styled.header`
   }
 
   .icon {
-    font-size: 35px;
+    font-size: ${rem("35px")};
   }
 
   .fillBlue {
-    fill: var(--blue);
+    fill: ${(props) => props.theme.colors.blue};
     :hover {
-      fill: var(--yellow);
+      fill: ${(props) => props.theme.colors.yellow};
     }
   }
   button {
@@ -46,18 +47,18 @@ const HeaderContainer = styled.header`
   }
 
   .outlineBlue {
-    color: var(--blue);
+    color: ${(props) => props.theme.colors.blue};
     :hover {
-      color: var(--yellow);
+      color: ${(props) => props.theme.colors.yellow};
     }
   }
 `;
 
 const NavButtons = styled.a`
-  color: var(--blue);
+  color: ${(props) => props.theme.colors.blue};
   text-decoration: none;
   :hover {
-    color: var(--yellow);
+    color: ${(props) => props.theme.colors.yellow};
   }
 `;
 

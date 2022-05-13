@@ -1,33 +1,34 @@
 import styled from "styled-components";
 import { Button } from "./Button";
 import { useHistory } from "react-router";
+import { rem } from "polished";
 
 const RegistrationSection = styled.section`
   display: grid;
-  grid-template-rows: 100px 300px;
+  grid-template-rows: ${rem("100px")} ${rem("300px")};
   place-items: center;
-  grid-gap: 20px;
+  grid-gap: ${rem("20px")};
 
   h2 {
     font-size: 2.5rem;
-    color: var(--blue);
+    color: ${(props) => props.theme.colors.blue};
   }
 
   .cardsContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(${rem("300px")}, 1fr));
+    grid-gap: ${rem("20px")};
     width: 100%;
     height: 100%;
   }
 
   .card {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    width: 300px;
-    height: 300px;
+    width: ${rem("300px")};
+    height: ${rem("300px")};
     place-self: center;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: ${rem("10px")};
+    padding: ${rem("20px")};
     display: grid;
     place-items: center;
 
@@ -36,14 +37,19 @@ const RegistrationSection = styled.section`
     }
     li {
       text-align: center;
-      margin-bottom: 5px;
+      margin-bottom: ${rem("5px")};
     }
 
     p {
-      background-color: var(--yellow);
-      color: var(--blue);
-      padding: 25px;
+      display: grid;
+      place-items: center;
+      background-color: ${(props) => props.theme.colors.yellow};
+      color: ${(props) => props.theme.colors.blue};
+      padding: ${rem("25px")};
       border-radius: 50%;
+      height: ${rem("90px")};
+      width: ${rem("90px")};
+
       font-size: 1.5rem;
     }
 

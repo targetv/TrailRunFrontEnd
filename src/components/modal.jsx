@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FormInput, Button, Form } from "./Button";
 import { AiOutlineClose } from "react-icons/ai";
 import { useHistory } from "react-router";
+import { rem } from "polished";
 
 const ModalBackground = styled.div`
   width: 100vw;
@@ -15,11 +16,11 @@ const ModalBackground = styled.div`
 `;
 
 const ModalContainer = styled.section`
-  width: 500px;
-  height: 400px;
+  width: ${rem("500px")};
+  height: ${rem("400px")};
   background-color: white;
   display: grid;
-  border-radius: 10px;
+  border-radius: ${rem("10px")};
   position: relative;
   place-self: center;
 
@@ -27,11 +28,11 @@ const ModalContainer = styled.section`
     font-size: 1.8rem;
 
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: ${rem("10px")};
+    right: ${rem("10px")};
 
     .icon {
-      fill: var(--yellow);
+      fill: ${(props) => props.theme.colors.yellow};
     }
   }
 `;

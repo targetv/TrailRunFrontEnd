@@ -1,5 +1,6 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { rem } from "polished";
 
 function AllEnteriesComponent({ enteries }) {
   const columns = [
@@ -37,7 +38,7 @@ function AllEnteriesComponent({ enteries }) {
   // }
 
   return (
-    <div style={{ height: "350px", width: "100%" }}>
+    <div style={{ height: `${rem("350px")}`, width: "100%" }}>
       <DataGrid columns={columns} rows={enteries} />
     </div>
   );

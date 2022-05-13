@@ -1,51 +1,56 @@
 import styled from "styled-components";
-import {FaAward,FaTshirt} from "react-icons/fa"
-
+import { FaAward, FaTshirt } from "react-icons/fa";
+import { rem } from "polished";
 
 const OfferSection = styled.section`
+  background-color: ${(props) => props.theme.colors.blue};
 
- background-color: var(--blue);
-   
-
- .offerSection{
+  .offerSection {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(${rem("200px")}, 1fr));
     place-items: center;
     height: 100%;
 
-    @media screen and (max-width: 700px){
-        grid-template-rows: auto;
-        grid-gap: 20px;s
+    @media screen and (max-width: ${rem("700px")}) {
+      grid-template-rows: auto;
+      grid-gap: ${rem("20px")};
     }
- }
+  }
 
- .icon{
-     font-size: 75px;
-     fill: white;
- }
+  .icon {
+    font-size: ${rem("75px")};
+    fill: white;
+  }
 
- .col{
-     display: grid;
-     place-items: center;
-    grid-gap: 10px;
- }
+  .col {
+    display: grid;
+    place-items: center;
+    grid-gap: ${rem("10px")};
+  }
 
- h4{
-     font-size: 1.5rem;
-     color: white;
- }
+  h4 {
+    font-size: 1.5rem;
+    color: white;
+  }
+`;
 
-`
-
-function OfferComponent(){
-    return(
-        <OfferSection>
-            <div className="container80 offerSection">
-            <div className="col"><FaAward className="icon"/> <h4>8 Succesful Years</h4> </div>
-            <div className="col"><FaTshirt className="icon"/><h4>Trail Run T-shirt</h4></div>
-            <div className="col"><FaTshirt className="icon"/><h4>Fully Marshalled</h4></div>
-            </div>
-        </OfferSection>
-    )
+function OfferComponent() {
+  return (
+    <OfferSection>
+      <div className="container80 offerSection">
+        <div className="col">
+          <FaAward className="icon" /> <h4>8 Succesful Years</h4>{" "}
+        </div>
+        <div className="col">
+          <FaTshirt className="icon" />
+          <h4>Trail Run T-shirt</h4>
+        </div>
+        <div className="col">
+          <FaTshirt className="icon" />
+          <h4>Fully Marshalled</h4>
+        </div>
+      </div>
+    </OfferSection>
+  );
 }
-export default OfferComponent
+export default OfferComponent;

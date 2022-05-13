@@ -1,62 +1,51 @@
 import styled from "styled-components";
+import { rem } from "polished";
 
 export const Button = styled.a`
+  width: ${rem("150px")};
+  padding: 0.75rem 0.9rem;
+  background-color: var(--blue);
+  text-align: center;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  color: ${(props) => props.theme.colors.yellow};
 
-width: 150px;
-padding: 12px 15px;
-background-color: var(--blue);
-text-align: center;
-border-radius: 10px;
-color: var(--yellow);
-
-
-:hover{
-    color: var(--blue);
-    background-color: var(--yellow);
-   
-}
-
-
-
-
-`
-
+  :hover {
+    color: ${(props) => props.theme.colors.blue};
+    background-color: ${(props) => props.theme.colors.yellow};
+  }
+`;
 
 export const FormInput = styled.input`
-    width: 80%;
-    padding: 15px;
-    font-size: 1.2rem;
-    border-radius: 20px;
-    border: 0.5px solid lightgrey;
+  width: 80%;
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  border-radius: 1.3rem;
+  border: 0.5px solid lightgrey;
 
-    :focus{
-        outline: none;
-    }
-
-`
+  :focus {
+    outline: none;
+  }
+`;
 
 export const Form = styled.form`
-    display: grid;
-    place-items: center;
-    grid-template-rows: repeat(3, 50px);
-    grid-gap: 30px;
-    place-self: center;
-    width: 100%;
-
-
-`
+  display: grid;
+  place-items: center;
+  grid-template-rows: repeat(3, ${rem("50px")});
+  grid-gap: ${rem("30px")};
+  place-self: center;
+  width: 100%;
+`;
 
 export const SmallButton = styled.a`
-padding: 5px;
-background-color: ${props => props.Color || "green"};
-border-radius: 5px 7px;
-color: white;
+  padding: ${rem("5px")};
+  background-color: ${(props) => props.Color || "green"};
+  border-radius: ${rem("5px")} ${rem("7px")};
+  color: white;
 
-:hover{
-    background-color: ${props => props.HoverBackground || "White"};
+  :hover {
+    background-color: ${(props) => props.HoverBackground || "White"};
     border: 1px solid green;
     color: green;
-}
-
-
-`
+  }
+`;

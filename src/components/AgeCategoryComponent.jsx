@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { rem } from "polished";
 
 function AgeCategoryComponent({ fetchName, num1, num2, gender }) {
   const [enteries, setEnteries] = useState([]);
@@ -37,7 +38,7 @@ function AgeCategoryComponent({ fetchName, num1, num2, gender }) {
   ];
 
   return (
-    <div style={{ height: "250px", width: "100%" }}>
+    <div style={{ height: `${rem("250px")}`, width: "100%" }}>
       {/* <DataGrid
         columns={columns}
         rows={enteries}

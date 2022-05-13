@@ -1,15 +1,16 @@
 import { Button } from "./Button";
 import Video from "../images/trail-run.mp4";
 import styled from "styled-components";
+import { rem } from "polished";
 
 const HeroVideoSection = styled.section`
   position: relative;
   display: grid;
-  height: calc(100vh - 70px);
+  height: calc(100vh - ${rem("70px")});
   align-items: center;
 
   video {
-    height: calc(100vh - 100px);
+    height: calc(100vh - ${rem("100px")});
     width: 100%;
     object-fit: cover;
     overflow: hidden;
@@ -31,7 +32,7 @@ const HeroVideoSection = styled.section`
 
   .overlayText {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: ${rem("10px")};
 
     h1 {
       font-size: 3.5rem;

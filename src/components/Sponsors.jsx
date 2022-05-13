@@ -25,7 +25,7 @@ const SliderContainer = styled.section`
 
     h3 {
       font-size: 2rem;
-      color: white;
+      color: ${(props) => props.theme.colors.white};
     }
 
     p {

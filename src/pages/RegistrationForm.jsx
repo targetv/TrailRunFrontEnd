@@ -48,7 +48,7 @@ const RegisterForm = styled.form`
   grid-gap: 20px;
   justify-items: center;
   height: 100%;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
 
   @media screen and (max-width: 700px) {
     grid-template-rows: repeat(6, minmax(50px, 1fr));

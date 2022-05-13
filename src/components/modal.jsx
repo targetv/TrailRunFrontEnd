@@ -18,7 +18,7 @@ const ModalBackground = styled.div`
 const ModalContainer = styled.section`
   width: ${rem("500px")};
   height: ${rem("400px")};
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   display: grid;
   border-radius: ${rem("10px")};
   position: relative;

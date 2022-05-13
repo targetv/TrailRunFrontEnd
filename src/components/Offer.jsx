@@ -19,7 +19,7 @@ const OfferSection = styled.section`
 
   .icon {
     font-size: ${rem("75px")};
-    fill: white;
+    fill: ${(props) => props.theme.colors.white};
   }
 
   .col {
@@ -30,7 +30,7 @@ const OfferSection = styled.section`
 
   h4 {
     font-size: 1.5rem;
-    color: white;
+    color: ${(props) => props.theme.colors.white};
   }
 `;
 

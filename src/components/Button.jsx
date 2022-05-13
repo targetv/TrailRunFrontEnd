@@ -41,10 +41,11 @@ export const SmallButton = styled.a`
   padding: ${rem("5px")};
   background-color: ${(props) => props.Color || "green"};
   border-radius: ${rem("5px")} ${rem("7px")};
-  color: white;
+  color: ${(props) => props.theme.colors.white};
 
   :hover {
-    background-color: ${(props) => props.HoverBackground || "White"};
+    background-color: ${(props) =>
+      props.HoverBackground || props.theme.colors.white};
     border: 1px solid green;
     color: green;
   }

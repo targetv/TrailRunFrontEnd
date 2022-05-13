@@ -16,11 +16,11 @@ const AdminCard = styled.div`
   grid-template-rows: 1fr 1fr;
   place-items: center;
 
-  background-color: ${(props) => props.cardColor || "white"};
+  background-color: ${(props) => props.cardColor || props.theme.colors.white};
 
   h4 {
     font-size: 10rem;
-    color: white;
+    color: ${(props) => props.theme.colors.white};
   }
 
   .smallerH4 {
@@ -28,7 +28,7 @@ const AdminCard = styled.div`
   }
 
   h5 {
-    color: white;
+    color: ${(props) => props.theme.colors.white};
     font-size: 2rem;
   }
 `;

@@ -29,7 +29,7 @@ const AboutUsContainer = styled.section`
   }
 `;
 
-function AboutUs() {
+const AboutUs = () => {
   return (
     <AboutUsContainer className="container80" id="aboutUs">
       <div className="aboutUsInformation">
@@ -47,5 +47,5 @@ function AboutUs() {
       <img src={Logo} alt="" />
     </AboutUsContainer>
   );
-}
+};
 export default AboutUs;

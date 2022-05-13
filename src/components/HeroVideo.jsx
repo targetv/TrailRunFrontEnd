@@ -41,7 +41,7 @@ const HeroVideoSection = styled.section`
   }
 `;
 
-function HeroVideo() {
+const HeroVideo = () => {
   return (
     <HeroVideoSection>
       <div className="videoFilter" />
@@ -54,6 +54,6 @@ function HeroVideo() {
       </div>
     </HeroVideoSection>
   );
-}
+};
 
 export default HeroVideo;

@@ -37,7 +37,7 @@ const SliderContainer = styled.section`
   }
 `;
 
-function SponsorsComponent() {
+const SponsorsComponent = () => {
   return (
     <SliderContainer id="sponsors">
       <Swiper
@@ -77,5 +77,5 @@ function SponsorsComponent() {
       </Swiper>
     </SliderContainer>
   );
-}
+};
 export default SponsorsComponent;

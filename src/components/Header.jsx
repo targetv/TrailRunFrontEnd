@@ -62,7 +62,7 @@ const NavButtons = styled.a`
   }
 `;
 
-function Header({ setModal, modalOn, userLoggedIn }) {
+const Header = ({ setModal, modalOn, userLoggedIn }) => {
   const location = useLocation();
   const history = useHistory();
 
@@ -114,5 +114,5 @@ function Header({ setModal, modalOn, userLoggedIn }) {
       </ul>
     </HeaderContainer>
   );
-}
+};
 export default Header;

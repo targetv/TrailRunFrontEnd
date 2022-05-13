@@ -34,7 +34,7 @@ const OfferSection = styled.section`
   }
 `;
 
-function OfferComponent() {
+const OfferComponent = () => {
   return (
     <OfferSection>
       <div className="container80 offerSection">
@@ -52,5 +52,5 @@ function OfferComponent() {
       </div>
     </OfferSection>
   );
-}
+};
 export default OfferComponent;

@@ -10,11 +10,11 @@ const FooterContainer = styled.footer`
   height: ${rem("75px")};
 `;
 
-function Footer() {
+const Footer = () => {
   return (
     <FooterContainer>
       <h3>Active Life Coxhoe</h3>
     </FooterContainer>
   );
-}
+};
 export default Footer;

@@ -59,7 +59,7 @@ const RegistrationSection = styled.section`
   }
 `;
 
-function RegistrationComponent({ cost, setCost }) {
+const RegistrationComponent = ({ cost, setCost }) => {
   const history = useHistory();
 
   const priceSelect = (event) => {
@@ -105,5 +105,5 @@ function RegistrationComponent({ cost, setCost }) {
       </div>
     </RegistrationSection>
   );
-}
+};
 export default RegistrationComponent;

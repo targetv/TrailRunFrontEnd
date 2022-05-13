@@ -28,7 +28,7 @@ function App() {
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
-  console.log(apiUrl);
+ 
   useEffect(() => {
     const token = Cookies.get("token");
     fetch(`${apiUrl}/ValidateToken`, {

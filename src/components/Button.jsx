@@ -4,7 +4,7 @@ import { rem } from "polished";
 export const Button = styled.a`
   width: ${rem("150px")};
   padding: 0.75rem 0.9rem;
-  background-color: var(--blue);
+  background-color: ${(props) => props.theme.colors.blue};
   text-align: center;
   border-radius: 0.6rem;
   text-decoration: none;

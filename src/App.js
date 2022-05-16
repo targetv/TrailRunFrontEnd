@@ -1,56 +1,55 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import Homepage from "./pages/Homepage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminDashboard from "./pages/AdminDashboard";
 import RegistrationForm from "./pages/RegistrationForm";
-import PaymentFailed from "./pages/PaymentFailed";
-import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentConfirmation from "./pages/PaymentConfirmation";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
-import Order from "./pages/Order";
-import Cookies from "js-cookie";
+import Checkout from "./pages/Checkout";
+
+// import Cookies from "js-cookie";
 import { useHistory } from "react-router";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPEPK);
 
 function App() {
   const [modalOn, setModal] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   // Product Id State
-  const [cost, setCost] = useState(0);
+  const userId = useRef("");
+  const [item, setItem] = useState("");
 
-  const [orderId, setOrderId] = useState(0);
+  // const apiUrl = process.env.REACT_APP_API_URL;
 
-  const history = useHistory();
-
-  const apiUrl = process.env.REACT_APP_API_URL;
-
- 
-  useEffect(() => {
-    const token = Cookies.get("token");
-    fetch(`${apiUrl}/ValidateToken`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(token),
-    })
-      .then((resp) => {
-        if (resp.ok) {
-          return resp.json();
-        } else {
-          return false;
-        }
-      })
-      .then((user) => {
-        setUserLoggedIn(user);
-        history.push("/dashboard");
-      });
-  }, []);
+  // useEffect(() => {
+  //   const token = Cookies.get("token");
+  //   fetch(`${apiUrl}/ValidateToken`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     credentials: "include",
+  //     body: JSON.stringify(token),
+  //   })
+  //     .then((resp) => {
+  //       if (resp.ok) {
+  //         return resp.json();
+  //       } else {
+  //         return false;
+  //       }
+  //     })
+  //     .then((user) => {
+  //       setUserLoggedIn(user);
+  //       history.push("/dashboard");
+  //     });
+  // }, []);
 
   return (
     <div className={modalOn ? "App modalOn" : "App"}>
@@ -68,29 +67,24 @@ function App() {
             modalOn={modalOn}
             setModal={setModal}
             setUserLoggedIn={setUserLoggedIn}
-            setCost={setCost}
-            cost={cost}
+            setItem={setItem}
+            item={item}
           />
         </Route>
-        <Route path="/order">
-          <Order
-            PayPalScriptProvider={PayPalScriptProvider}
-            PayPalButtons={PayPalButtons}
-            orderId={orderId}
-            setOrderId={setOrderId}
-          />
+        <Route path="/checkout">
+          <Checkout item={item} userId={userId} />
         </Route>
         <Route path="/dashboard">
-          {userLoggedIn ? <AdminDashboard /> : <Redirect to="/home" />}
+          {/* {userLoggedIn ? <AdminDashboard /> : <Redirect to="/home" />} */}
+          <AdminDashboard />
         </Route>
         <Route path="/register">
-          <RegistrationForm cost={cost} setOrderId={setOrderId} />
+          <RegistrationForm item={item} userId={userId} />
         </Route>
-        <Route path="/paymentsuccess">
-          <PaymentSuccess />
-        </Route>
-        <Route path="/paymentfailed">
-          <PaymentFailed />
+        <Route path="/paymentconfirmation/:userId">
+          <Elements stripe={stripePromise}>
+            <PaymentConfirmation userId={userId} />
+          </Elements>
         </Route>
       </Switch>
       <Footer />

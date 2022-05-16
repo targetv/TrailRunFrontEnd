@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button } from "../components/Button";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import Card from "@mui/material/Card";
 
 import {
   TextField,
@@ -14,31 +16,25 @@ import {
   Alert,
 } from "@mui/material";
 
-const FormContainer = styled.section`
-  display: grid;
-  width: 50%;
-  grid-template-rows: auto;
-  grid-gap: 20px;
-  height: 100vh;
-
-  @media screen and (max-width: 700px) {
-    width: 80%;
-  }
-
-  h3 {
-    place-self: center;
-    font-size: 1.5rem;
-    padding-top: 20px;
-    color: var(--blue);
-  }
-`;
-
 const FormBackGround = styled.div`
   background-color: lightgrey;
-  height: 100vh;
+  height: 100%;
   display: grid;
   place-items: center;
   overflow: scroll;
+  padding: 20px;
+  h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 20px;
+    color: ${(props) => props.theme.colors.blue};
+  }
+`;
+
+const SmallText = styled.p`
+  width: 50%;
+  color: red;
+  font-size: bold;
 `;
 
 const RegisterForm = styled.form`
@@ -86,7 +82,7 @@ const RegisterForm = styled.form`
   }
 `;
 
-function RegistrationForm({ cost, setOrderId }) {
+function RegistrationForm({ userId }) {
   const history = useHistory();
 
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -105,81 +101,99 @@ function RegistrationForm({ cost, setOrderId }) {
     gender: "",
     ageonraceday: "",
     shirtsize: "",
-    clubmember: false,
-    signature: "test",
+    signature: "",
+    clubname: "",
+    registrationnumber: "",
   });
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
+    if (name === "ageonraceday") {
+      value = Number(event.target.value);
+    }
 
     setForm({ ...form, [name]: value });
   };
 
   const tShirtSizes = ["M", "L", "XL"];
 
-  const handleSubmit = (event) => {
-    if (formRef.current.reportValidity()) {
-      event.preventDefault();
-      fetch(`${apiUrl}/register`, {
-        credentials: "include",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      })
-        .then((resp) => {
-          if (resp.ok) {
-            setForm({
-              firstname: "",
-              lastname: "",
-              email: "",
-              dob: "",
-              address: "",
-              postcode: "",
-              telephonenumber: "",
-              gender: "",
-              ageonraceday: "",
-              shirtsize: "",
-              clubmember: false,
-              signature: "test",
-            });
-            return resp.json();
-          } else if (resp.status === 406) {
-            setUserExists(true);
-            throw new Error("User Exsists");
-          } else {
-            console.log(resp.json());
+  const CREATE_NEW_USER = gql`
+    mutation Mutation($input: NewUser) {
+      CreateNewUser(input: $input) {
+        success
+        userId
+      }
+    }
+  `;
+
+  const USER = gql`
+    query User($input: GetUserByEmail) {
+      User(input: $input) {
+        email
+      }
+    }
+  `;
+  const [createUser, { loading, error }] = useMutation(CREATE_NEW_USER);
+  const { refetch } = useQuery(USER);
+
+  const handleSubmit = async (event) => {
+    try {
+      form["signature"] = `${form.firstname} ${form.lastname} `;
+      if (formRef.current.reportValidity()) {
+        debugger;
+        event.preventDefault();
+        // await getUser({variables: {input: {form.email}}})
+        const fetchUser = await refetch({ input: { email: form.email } });
+        if (fetchUser?.data?.User?.email) {
+          setUserExists(true);
+          throw "User Exists";
+        } else {
+          const createdUser = await createUser({
+            variables: { input: { ...form } },
+          });
+
+          if (error) {
+            return "Error";
           }
-        })
-        .then((data) => {
-          fetch(`${apiUrl}/save-order`, {
-            credentials: "include",
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userid: data, productid: cost }),
-          })
-            .then((resp) => resp.json())
-            .then((order) => {
-              setOrderId(order);
-              console.log(order);
-              history.push("/order");
-            });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          if (loading) {
+            return "Loading";
+          }
+          userId.current = createdUser?.data?.CreateNewUser?.userId;
+
+          setForm({
+            firstname: "",
+            lastname: "",
+            email: "",
+            dob: "",
+            address: "",
+            postcode: "",
+            telephonenumber: "",
+            gender: "",
+            ageonraceday: "",
+            shirtsize: "",
+            clubmember: false,
+            signature: "",
+          });
+
+          history.push("/checkout");
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <FormBackGround>
-      <FormContainer className="container80">
+      <Card className="container80">
         <h3>Coxhoe Trail Run Registration</h3>
-        {userExsits && <Alert severity="error"> User Already Exsists!</Alert>}
+        {userExsits && (
+          <Alert severity="error">
+            {" "}
+            User Already Exists Please Call 01913771789!
+          </Alert>
+        )}
         <RegisterForm ref={formRef} onSubmit={handleSubmit}>
           <TextField
             required
@@ -188,6 +202,7 @@ function RegistrationForm({ cost, setOrderId }) {
             variant="outlined"
             className="width50"
             onChange={handleChange}
+            value={form["firstname"]}
             name="firstname"
             type="text"
           />
@@ -199,6 +214,7 @@ function RegistrationForm({ cost, setOrderId }) {
             className="width50"
             onChange={handleChange}
             name="lastname"
+            value={form["lastname"]}
             type="text"
           />
           {userExsits ? (
@@ -212,6 +228,7 @@ function RegistrationForm({ cost, setOrderId }) {
               className="width50"
               onChange={handleChange}
               name="email"
+              value={form["email"]}
               type="email"
             />
           ) : (
@@ -223,6 +240,7 @@ function RegistrationForm({ cost, setOrderId }) {
               className="width50"
               onChange={handleChange}
               name="email"
+              value={form["email"]}
               type="email"
             />
           )}
@@ -232,14 +250,16 @@ function RegistrationForm({ cost, setOrderId }) {
               name="dob"
               onChange={handleChange}
               type="date"
+              value={form["dob"]}
             />
             <TextField
               required
               id="outlined-default"
               label="Age On Race Day"
               variant="outlined"
-              type="text"
+              type="number"
               name="ageonraceday"
+              value={form["ageonraceday"]}
               onChange={handleChange}
             />
           </div>
@@ -251,6 +271,7 @@ function RegistrationForm({ cost, setOrderId }) {
             type="text"
             name="address"
             onChange={handleChange}
+            value={form["address"]}
             className="width50"
           />
           <TextField
@@ -261,6 +282,7 @@ function RegistrationForm({ cost, setOrderId }) {
             type="text"
             name="postcode"
             onChange={handleChange}
+            value={form["postcode"]}
             className="width50"
           />
           <TextField
@@ -271,6 +293,7 @@ function RegistrationForm({ cost, setOrderId }) {
             type="text"
             name="telephonenumber"
             onChange={handleChange}
+            value={form["telephonenumber"]}
             className="width50"
           />
           <div className="twoInputCol">
@@ -280,6 +303,7 @@ function RegistrationForm({ cost, setOrderId }) {
                 row
                 aria-label="gender"
                 name="row-radio-buttons-group"
+                value={form["gender"]}
               >
                 <FormControlLabel
                   value="female"
@@ -302,7 +326,8 @@ function RegistrationForm({ cost, setOrderId }) {
               options={tShirtSizes}
               disablePortal
               id="combo-box-demo"
-              value={form.shirtsize}
+              value={form["shirtsize"]}
+              className="width50"
               onChange={(event, newValue) => {
                 setForm({ ...form, shirtsize: newValue });
               }}
@@ -312,9 +337,66 @@ function RegistrationForm({ cost, setOrderId }) {
             />
           </div>
 
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Are You A Club Member?</FormLabel>
+            <RadioGroup
+              row
+              aria-label="clubmembercheck"
+              name="row-radio-buttons-group"
+              value={form["clubmember"]}
+            >
+              <FormControlLabel
+                value="Yes"
+                name="clubmember"
+                control={<Radio />}
+                label="Yes"
+                onChange={handleChange}
+              />
+              <FormControlLabel
+                value="No"
+                name="clubmember"
+                control={<Radio />}
+                label="No"
+                onChange={handleChange}
+              />
+            </RadioGroup>
+          </FormControl>
+          {form["clubmember"] === "Yes" && (
+            <>
+              <TextField
+                required
+                id="outlined-default"
+                label="Club Name"
+                variant="outlined"
+                type="text"
+                name="clubname"
+                onChange={handleChange}
+                value={form["clubname"]}
+                className="width50"
+              />
+              <TextField
+                required
+                id="outlined-default"
+                label="Registration Number"
+                variant="outlined"
+                type="text"
+                name="registrationnumber"
+                onChange={handleChange}
+                value={form["registrationnumber"]}
+                className="width50"
+              />
+            </>
+          )}
+          <SmallText>
+            *Terms and Conditons Trail Run T-shirt sizes can not be guaranteed
+            for on the day registrations. I understand that I participate
+            completely at my own risk and organisers will not be held
+            responsible for any loss or injury incurred to my person, however
+            caused, during or as a result of taking part in the race.
+          </SmallText>
           <Button onClick={handleSubmit}>Submit</Button>
         </RegisterForm>
-      </FormContainer>
+      </Card>
     </FormBackGround>
   );
 }

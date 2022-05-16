@@ -16,14 +16,14 @@ const HomepageContainer = styled.main`
   }
 `;
 
-function Homepage({ modalOn, setModal, setUserLoggedIn, setCost, cost }) {
+function Homepage({ modalOn, setModal, setUserLoggedIn, setItem, item }) {
   return (
     <>
       <HomepageContainer>
         <HeroVideo />
         <AboutUs />
         <OfferComponent />
-        <RegistrationComponent cost={cost} setCost={setCost} />
+        <RegistrationComponent item={item} setItem={setItem} />
         <SponsorsComponent />
         <GoogleMaps />
       </HomepageContainer>

@@ -11,6 +11,7 @@ const SliderContainer = styled.section`
   background-color: ${(props) => props.theme.colors.blue};
   height: 100%;
 
+  --swiper-theme-color: white !important;
   .slider {
     width: 80%;
     margin-left: auto;

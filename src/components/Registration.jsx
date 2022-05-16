@@ -59,12 +59,12 @@ const RegistrationSection = styled.section`
   }
 `;
 
-const RegistrationComponent = ({ cost, setCost }) => {
+const RegistrationComponent = ({ cost, setItem }) => {
   const history = useHistory();
 
   const priceSelect = (event) => {
-    const price = Number(event.target.lastChild.innerHTML);
-    setCost(price);
+    const item = event.target.lastChild.innerHTML;
+    setItem(item);
     history.push("/register");
   };
 
@@ -80,7 +80,7 @@ const RegistrationComponent = ({ cost, setCost }) => {
             <li>Trail Run T-shirt</li>
           </ul>
           <Button onClick={priceSelect}>
-            Register <span className="none">2</span>
+            Register <span className="none">Club Member</span>
           </Button>
         </div>
         <div className="card">
@@ -91,7 +91,7 @@ const RegistrationComponent = ({ cost, setCost }) => {
             <li>Trail Run T-shirt</li>
           </ul>
           <Button onClick={priceSelect}>
-            Register <span className="none">1</span>
+            Register <span className="none">None Club Member</span>
           </Button>
         </div>
         <div className="card">

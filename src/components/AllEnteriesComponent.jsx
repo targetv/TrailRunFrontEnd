@@ -1,10 +1,29 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { rem } from "polished";
+import { gql, useQuery } from "@apollo/client";
 
 function AllEnteriesComponent({ enteries }) {
+  const USERS = gql`
+    query GetUsers {
+      Users {
+        _id
+        firstname
+        lastname
+        email
+        dob
+        address
+        postcode
+        telephonenumber
+        gender
+        ageonraceday
+        shirtsize
+        clubmember
+      }
+    }
+  `;
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "_id", headerName: "ID", width: 70 },
     { field: "email", headerName: "Email", width: 250, editable: true },
     { field: "firstname", headerName: "First name", width: 130 },
     { field: "lastname", headerName: "Last name", width: 130 },
@@ -30,16 +49,24 @@ function AllEnteriesComponent({ enteries }) {
     { field: "Signature", headerName: "Signature", width: 130 },
   ];
 
-  // function UpdateEnteriesOrder() {
-  //   const updateOrder = enteries.map((entry) => {
-  //     return { ...entry, order: entry.order[0].Payment[0].paymentstatus };
-  //   });
-  //   return updateOrder;
-  // }
+  function UpdateEnteriesOrder() {
+    const updateOrder = enteries.map((entry) => {
+      return { ...entry, order: entry.order[0].Payment[0].paymentstatus };
+    });
+    return updateOrder;
+  }
+
+  const { loading, error, data } = useQuery(USERS);
+  if (loading) return "Loading....";
+  if (error) return "Error";
 
   return (
     <div style={{ height: `${rem("350px")}`, width: "100%" }}>
-      <DataGrid columns={columns} rows={enteries} />
+      <DataGrid
+        columns={columns}
+        rows={data?.Users}
+        getRowId={(row) => row._id}
+      />
     </div>
   );
 }

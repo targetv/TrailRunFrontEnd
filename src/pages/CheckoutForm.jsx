@@ -37,7 +37,6 @@ export default function CheckoutForm({ userId }) {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  debugger;
 
   const url = process.env.REACT_APP_URL;
 
@@ -72,7 +71,6 @@ export default function CheckoutForm({ userId }) {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
-    debugger;
     e.preventDefault();
 
     if (!stripe || !elements) {

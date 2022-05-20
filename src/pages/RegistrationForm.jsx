@@ -141,7 +141,6 @@ function RegistrationForm({ userId }) {
     try {
       form["signature"] = `${form.firstname} ${form.lastname} `;
       if (formRef.current.reportValidity()) {
-        debugger;
         event.preventDefault();
         // await getUser({variables: {input: {form.email}}})
         const fetchUser = await refetch({ input: { email: form.email } });

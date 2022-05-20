@@ -190,7 +190,7 @@ function RegistrationForm({ userId }) {
         {userExsits && (
           <Alert severity="error">
             {" "}
-            User Already Exists Please Call 01913771789!
+            Previous Registration Already Exists Please Call 01913771789!
           </Alert>
         )}
         <RegisterForm ref={formRef} onSubmit={handleSubmit}>

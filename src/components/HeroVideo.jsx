@@ -1,5 +1,4 @@
 import { Button } from "./Button";
-import Video from "../images/trail-run.mp4";
 import styled from "styled-components";
 import { rem } from "polished";
 
@@ -45,7 +44,14 @@ const HeroVideo = () => {
   return (
     <HeroVideoSection>
       <div className="videoFilter" />
-      <video src={Video} loop muted autoPlay />
+      <video
+        src={
+          "https://amplify-amplifyfb85194f54d24-staging-165405-deployment.s3.eu-west-2.amazonaws.com/trail-run.mp4"
+        }
+        loop
+        muted
+        autoPlay
+      />
       <div className="overlayText container80">
         <h1>
           Coxhoe Trail Run 2022 <br /> Registrations Open{" "}

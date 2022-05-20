@@ -45,7 +45,6 @@ const PaymentConfirmation = () => {
     stripe
       .retrievePaymentIntent(clientSecret)
       .then(async ({ paymentIntent }) => {
-        console.log(paymentIntent.status);
         if (paymentIntent.status === "succeeded" && userId) {
           setPaymentSuccess(true);
           await updateStatus({

@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useHistory } from "react-router";
+import React, { useRef, useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
 import { Button } from "../components/Button";
 import { gql, useMutation, useQuery } from "@apollo/client";
@@ -84,6 +84,12 @@ const RegisterForm = styled.form`
 
 function RegistrationForm({ userId }) {
   const history = useHistory();
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const apiUrl = process.env.REACT_APP_API_URL;
   const [userExsits, setUserExists] = useState(false);

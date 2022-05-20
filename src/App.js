@@ -10,6 +10,7 @@ import RegistrationForm from "./pages/RegistrationForm";
 import PaymentConfirmation from "./pages/PaymentConfirmation";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+// import { Helmet } from "react-helmet";
 
 import Checkout from "./pages/Checkout";
 
@@ -52,43 +53,49 @@ function App() {
   // }, []);
 
   return (
-    <div className={modalOn ? "App modalOn" : "App"}>
-      <Header
-        setModal={setModal}
-        modalOn={modalOn}
-        userLoggedIn={userLoggedIn}
-      />
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to="/home" />
-        </Route>
-        <Route path="/home">
-          <Homepage
-            modalOn={modalOn}
-            setModal={setModal}
-            setUserLoggedIn={setUserLoggedIn}
-            setItem={setItem}
-            item={item}
-          />
-        </Route>
-        <Route path="/checkout">
-          <Checkout item={item} userId={userId} />
-        </Route>
-        <Route path="/dashboard">
-          {/* {userLoggedIn ? <AdminDashboard /> : <Redirect to="/home" />} */}
-          <AdminDashboard />
-        </Route>
-        <Route path="/register">
-          <RegistrationForm item={item} userId={userId} />
-        </Route>
-        <Route path="/paymentconfirmation/:userId">
-          <Elements stripe={stripePromise}>
-            <PaymentConfirmation userId={userId} />
-          </Elements>
-        </Route>
-      </Switch>
-      <Footer />
-    </div>
+    <>
+      {/* <Helmet>
+        <meta charSet="utf-8" />
+        <title>Coxhoe Trail Run</title>
+      </Helmet> */}
+      <div className={modalOn ? "App modalOn" : "App"}>
+        <Header
+          setModal={setModal}
+          modalOn={modalOn}
+          userLoggedIn={userLoggedIn}
+        />
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home">
+            <Homepage
+              modalOn={modalOn}
+              setModal={setModal}
+              setUserLoggedIn={setUserLoggedIn}
+              setItem={setItem}
+              item={item}
+            />
+          </Route>
+          <Route path="/checkout">
+            <Checkout item={item} userId={userId} />
+          </Route>
+          <Route path="/dashboard">
+            {/* {userLoggedIn ? <AdminDashboard /> : <Redirect to="/home" />} */}
+            <AdminDashboard />
+          </Route>
+          <Route path="/register">
+            <RegistrationForm item={item} userId={userId} />
+          </Route>
+          <Route path="/paymentconfirmation/:userId">
+            <Elements stripe={stripePromise}>
+              <PaymentConfirmation userId={userId} />
+            </Elements>
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    </>
   );
 }
 

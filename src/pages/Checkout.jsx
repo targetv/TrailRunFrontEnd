@@ -49,7 +49,10 @@ export default function App({ item, userId }) {
       }
       fetch(`${process.env.REACT_APP_EXPRESS}/create-payment-intent`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({ item, email }),
       })
         .then((res) => res.json())

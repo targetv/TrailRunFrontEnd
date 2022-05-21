@@ -124,7 +124,7 @@ function RegistrationForm({ userId }) {
     setForm({ ...form, [name]: value });
   };
 
-  const tShirtSizes = ["M", "L", "XL"];
+  const tShirtSizes = ["S", "M", "L", "XL"];
 
   const CREATE_NEW_USER = gql`
     mutation Mutation($input: NewUser) {

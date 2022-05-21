@@ -44,7 +44,11 @@ const AboutUs = () => {
           start point. Route
         </p>
       </div>
-      <img src={Logo} alt="" />
+      <img
+        src="https://amplify-amplifyfb85194f54d24-staging-165405-deployment.s3.eu-west-2.amazonaws.com/trailrunmap.jpeg"
+        width={800}
+        height={300}
+      />
     </AboutUsContainer>
   );
 };

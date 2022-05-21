@@ -49,6 +49,7 @@ export default function App({ item, userId }) {
       }
       fetch(`${process.env.REACT_APP_EXPRESS}/create-payment-intent`, {
         method: "POST",
+        mode: "cors",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ item, email }),

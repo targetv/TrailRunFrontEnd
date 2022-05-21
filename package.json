@@ -2,7 +2,6 @@
   "name": "trailrun",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://trailrunapi.herokuapp.com",
   "dependencies": {
     "@apollo/client": "^3.6.2",
     "@emotion/react": "^11.4.1",

@@ -64,29 +64,23 @@ const GoogleMaps = () => {
           }}
         />
 
-        {selected ? (
-          <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
-          >
-            <div>
-              <h2>
-                {selected.marker === "flag"
-                  ? "Starting Position"
-                  : "Registration"}
-              </h2>
-              {selected.marker === "form" ? (
-                <p>
-                  8:30am Registrations Open <br />
-                  9:30am Registrations Close <br />
-                  10am Race Starts
-                </p>
-              ) : null}
-            </div>
-          </InfoWindow>
-        ) : null}
+        {/* {selected ? ( */}
+        <InfoWindow position={{ lat: 54.715492, lng: -1.508682 }}>
+          <div>
+            <h2>Registration</h2>
+
+            <p>
+              8:30am Registrations Open <br />
+              9:30am Registrations Close <br />
+              10am Race Starts
+            </p>
+          </div>
+        </InfoWindow>
+        <InfoWindow position={{ lat: 54.716777, lng: -1.49005 }}>
+          <div>
+            <h2>Starting Position</h2>
+          </div>
+        </InfoWindow>
       </GoogleMap>
     </div>
   );

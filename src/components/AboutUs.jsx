@@ -46,7 +46,7 @@ const AboutUs = () => {
       </div>
       <img
         src="https://amplify-amplifyfb85194f54d24-staging-165405-deployment.s3.eu-west-2.amazonaws.com/trailrunmap.jpeg"
-        width={800}
+        width={450}
         height={300}
       />
     </AboutUsContainer>

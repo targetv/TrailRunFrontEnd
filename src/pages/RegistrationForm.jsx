@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
 import { Button } from "../components/Button";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import Card from "@mui/material/Card";
 
 import {
@@ -13,7 +13,6 @@ import {
   RadioGroup,
   Radio,
   Autocomplete,
-  Alert,
 } from "@mui/material";
 
 const FormBackGround = styled.div`
@@ -92,7 +91,6 @@ function RegistrationForm({ userId }) {
   }, [pathname]);
 
   const apiUrl = process.env.REACT_APP_API_URL;
-  const [userExsits, setUserExists] = useState(false);
 
   const formRef = useRef();
 
@@ -133,15 +131,7 @@ function RegistrationForm({ userId }) {
     }
   `;
 
-  const USER = gql`
-    query User($input: GetUserByEmail) {
-      User(input: $input) {
-        email
-      }
-    }
-  `;
   const [createUser, { loading, error }] = useMutation(CREATE_NEW_USER);
-  const { refetch } = useQuery(USER);
 
   const handleSubmit = async (event) => {
     try {
@@ -149,40 +139,36 @@ function RegistrationForm({ userId }) {
       if (formRef.current.reportValidity()) {
         event.preventDefault();
         // await getUser({variables: {input: {form.email}}})
-        const fetchUser = await refetch({ input: { email: form.email } });
-        if (fetchUser?.data?.User?.email) {
-          setUserExists(true);
-          throw "User Exists";
-        } else {
-          const createdUser = await createUser({
-            variables: { input: { ...form } },
-          });
+        // const fetchUser = await refetch({ input: { email: form.email } });
 
-          if (error) {
-            return "Error";
-          }
-          if (loading) {
-            return "Loading";
-          }
-          userId.current = createdUser?.data?.CreateNewUser?.userId;
+        const createdUser = await createUser({
+          variables: { input: { ...form } },
+        });
 
-          setForm({
-            firstname: "",
-            lastname: "",
-            email: "",
-            dob: "",
-            address: "",
-            postcode: "",
-            telephonenumber: "",
-            gender: "",
-            ageonraceday: "",
-            shirtsize: "",
-            clubmember: false,
-            signature: "",
-          });
-
-          history.push("/checkout");
+        if (error) {
+          return "Error";
         }
+        if (loading) {
+          return "Loading";
+        }
+        userId.current = createdUser?.data?.CreateNewUser?.userId;
+
+        setForm({
+          firstname: "",
+          lastname: "",
+          email: "",
+          dob: "",
+          address: "",
+          postcode: "",
+          telephonenumber: "",
+          gender: "",
+          ageonraceday: "",
+          shirtsize: "",
+          clubmember: false,
+          signature: "",
+        });
+
+        history.push("/checkout");
       }
     } catch (error) {
       console.log(error);
@@ -193,12 +179,6 @@ function RegistrationForm({ userId }) {
     <FormBackGround>
       <Card className="container80">
         <h3>Coxhoe Trail Run Registration</h3>
-        {userExsits && (
-          <Alert severity="error">
-            {" "}
-            Previous Registration Already Exists Please Call 01913771789!
-          </Alert>
-        )}
         <RegisterForm ref={formRef} onSubmit={handleSubmit}>
           <TextField
             required
@@ -222,33 +202,17 @@ function RegistrationForm({ userId }) {
             value={form["lastname"]}
             type="text"
           />
-          {userExsits ? (
-            <TextField
-              error
-              required
-              helperText="User Already Exists"
-              id="outlined-error"
-              label="Email"
-              variant="outlined"
-              className="width50"
-              onChange={handleChange}
-              name="email"
-              value={form["email"]}
-              type="email"
-            />
-          ) : (
-            <TextField
-              required
-              id="outlined-error"
-              label="Email"
-              variant="outlined"
-              className="width50"
-              onChange={handleChange}
-              name="email"
-              value={form["email"]}
-              type="email"
-            />
-          )}
+          <TextField
+            required
+            id="outlined-error"
+            label="Email"
+            variant="outlined"
+            className="width50"
+            onChange={handleChange}
+            name="email"
+            value={form["email"]}
+            type="email"
+          />
           <div className="twoInputCol">
             <TextField
               required

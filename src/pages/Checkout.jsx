@@ -37,7 +37,7 @@ const PaymentApp = styled.section`
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPEPK);
 
 export default function App({ item, userId }) {
-  const itemsList = { "None Club Member": "£12", "Club Member": "£10" };
+  const itemsList = { "None Club Member": "£14", "Club Member": "£12" };
   const [clientSecret, setClientSecret] = useState("");
   const [email, setEmail] = useState("");
 

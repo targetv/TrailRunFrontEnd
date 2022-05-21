@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import CircularProgress from "@mui/material/CircularProgress";
 import React, { useEffect, useState } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
@@ -24,8 +24,31 @@ const PaymentConfirmation = () => {
       }
     }
   `;
+
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [updateStatus, { loading, error }] = useMutation(UPDATEPAYMENTSTATUS);
+
+  const USER = gql`
+    query User($input: GetUserById) {
+      UserById(input: $input) {
+        firstname
+        lastname
+        email
+        dob
+        address
+        postcode
+        telephonenumber
+        gender
+        ageonraceday
+        shirtsize
+        signature
+        clubname
+        clubmember
+        registrationnumber
+      }
+    }
+  `;
+  const { refetch } = useQuery(USER);
   const { userId } = useParams();
   const stripe = useStripe();
   useEffect(() => {
@@ -50,9 +73,24 @@ const PaymentConfirmation = () => {
           await updateStatus({
             variables: { input: { id: userId } },
           });
+
+          const user = await refetch({
+            input: { id: userId },
+          });
+
+          await fetch(`${process.env.REACT_APP_EXPRESS}/confirmedpayment`, {
+            method: "POST",
+            mode: "cors",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+          });
         }
       });
   }, [stripe]);
+
   if (loading) {
     return <CircularProgress />;
   }

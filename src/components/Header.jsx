@@ -109,7 +109,9 @@ const Header = ({ setModal, modalOn, userLoggedIn }) => {
           </button>
         </li>
         <li>
-          <HiOutlineMail className="icon outlineBlue" />
+          <a href="mailto:bal@activelifecoxhoe.co.uk">
+            <HiOutlineMail className="icon outlineBlue" />
+          </a>
         </li>
       </ul>
     </HeaderContainer>

@@ -37,6 +37,9 @@ const HeroVideoSection = styled.section`
       font-size: 3.5rem;
       color: white;
     }
+    h1:nth-child(3) {
+      color: orange;
+    }
   }
 `;
 
@@ -53,9 +56,10 @@ const HeroVideo = () => {
         autoPlay
       />
       <div className="overlayText container80">
-        <h1>
-          Coxhoe Trail Run 2022 <br /> Registrations Open{" "}
-        </h1>
+        <h1>Coxhoe Trail Run</h1>
+        <h1>25th September 2022</h1>
+        <h1>Registrations Open </h1>
+
         <Button href="#registraion">Register Today</Button>
       </div>
     </HeroVideoSection>

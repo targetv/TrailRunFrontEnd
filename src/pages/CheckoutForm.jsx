@@ -8,6 +8,7 @@ import {
 import styled from "styled-components";
 import { rem } from "polished";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Alert } from "@mui/material";
 
 const CheckoutFormEl = styled.form`
   display: grid;
@@ -105,21 +106,27 @@ export default function CheckoutForm({ userId }) {
   };
 
   return (
-    <CheckoutFormEl id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element" />
-      {!isLoading ? (
-        <CheckoutButton
-          disabled={isLoading || !stripe || !elements}
-          id="submit"
-        >
-          <span id="button-text">Pay now</span>
-        </CheckoutButton>
-      ) : (
-        <CircularProgress />
+    <>
+      {message && (
+        <Alert severity="error">{`${message} Please call Active Life Coxhoe on 01913771789`}</Alert>
       )}
 
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </CheckoutFormEl>
+      <CheckoutFormEl id="payment-form" onSubmit={handleSubmit}>
+        <PaymentElement id="payment-element" />
+        {!isLoading ? (
+          <CheckoutButton
+            disabled={isLoading || !stripe || !elements}
+            id="submit"
+          >
+            <span id="button-text">Pay now</span>
+          </CheckoutButton>
+        ) : (
+          <CircularProgress />
+        )}
+
+        {/* Show any error or success messages */}
+        {message && <div id="payment-message">{message}</div>}
+      </CheckoutFormEl>
+    </>
   );
 }

@@ -36,6 +36,10 @@ const SliderContainer = styled.section`
       font-size: 1.1rem;
     }
   }
+
+  .singleText {
+    grid-template-rows: 1fr;
+  }
 `;
 
 const SponsorsComponent = () => {
@@ -50,17 +54,8 @@ const SponsorsComponent = () => {
         centeredSlides={true}
         autoplay={{ delay: 8000, disableOnInteraction: false }}
       >
-        <SwiperSlide className="slide">
-          <h3>La Chocolatrice Chocolate Factory + Shop</h3>
-          <p>
-            Commercial RD East, Coxhoe, DH6 4LD "Step into the magical world of
-            chocolate at La Chocolatrice Chocolate Factory in Coxhoe. We make
-            all of our delicious chocolate bars and treats in store. We dream up
-            the flavours, do a lot of trialling and even more tasting, and then
-            begin work making our truly scrumptious chocolate treats! We also
-            offer the chance to be a chocolatier for a day, during our fantastic
-            hands-on chocolate making workshops, which we run on site too!'
-          </p>
+        <SwiperSlide className="slide singleText">
+          <h3> T.W Steam Heating Services Ltd</h3>
         </SwiperSlide>
         <SwiperSlide className="slide">
           <h3>Breedon</h3>

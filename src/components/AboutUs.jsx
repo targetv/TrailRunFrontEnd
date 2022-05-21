@@ -34,9 +34,9 @@ const AboutUs = () => {
     <AboutUsContainer className="container80" id="aboutUs">
       <div className="aboutUsInformation">
         <h2>About Us</h2>
-        <h3>ARC 21/279</h3>
+        <h3>ARC 22/385</h3>
         <p>
-          Coxhoe Trail Run 7th Successful Year Running A scenic route full of
+          Coxhoe Trail Run 8th Successful Year Running A scenic route full of
           interest and undulating over old railway lines and quarry paths
           between Coxhoe and Kelloe in County Durham. Start at Public byway
           (Coxhoe Hall), enter the path leading to Old Kelloe Way and follow the

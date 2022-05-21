@@ -79,6 +79,10 @@ const RegisterForm = styled.form`
       grid-template-rows: auto;
     }
   }
+
+  .threeInputCol {
+    grid-template-columns: 20px 1fr 1fr;
+  }
 `;
 
 function RegistrationForm({ userId }) {
@@ -213,7 +217,8 @@ function RegistrationForm({ userId }) {
             value={form["email"]}
             type="email"
           />
-          <div className="twoInputCol">
+          <div className="twoInputCol threeInputCol">
+            <FormLabel>DOB</FormLabel>
             <TextField
               required
               name="dob"
@@ -221,6 +226,7 @@ function RegistrationForm({ userId }) {
               type="date"
               value={form["dob"]}
             />
+
             <TextField
               required
               id="outlined-default"

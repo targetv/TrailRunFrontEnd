@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Button } from "../components/Button";
 import { gql, useMutation } from "@apollo/client";
 import Card from "@mui/material/Card";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   TextField,
@@ -369,7 +370,11 @@ function RegistrationForm({ userId }) {
             responsible for any loss or injury incurred to my person, however
             caused, during or as a result of taking part in the race.
           </SmallText>
-          <Button onClick={handleSubmit}>Submit</Button>
+          {!loading ? (
+            <Button onClick={handleSubmit}>Submit</Button>
+          ) : (
+            <CircularProgress />
+          )}
         </RegisterForm>
       </Card>
     </FormBackGround>

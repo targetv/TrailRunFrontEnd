@@ -76,7 +76,7 @@ const RegisterForm = styled.form`
     grid-gap: 10px;
     width: 60%;
     @media screen and (max-width: 700px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr !important;
       grid-template-rows: auto;
     }
   }

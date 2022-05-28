@@ -96,7 +96,7 @@ const RegistrationComponent = ({ cost, setItem }) => {
         </div>
         <div className="card">
           <h3>On The Day</h3>
-          <p>£15</p>
+          <p>£16</p>
           <ul>
             <li>Entry</li>
             <li>Trail Run T-shirt</li>

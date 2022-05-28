@@ -1,6 +1,7 @@
 import { Button } from "./Button";
 import styled from "styled-components";
 import { rem } from "polished";
+import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 const HeroVideoSection = styled.section`
   position: relative;
@@ -56,11 +57,25 @@ const HeroVideo = () => {
         autoPlay
       />
       <div className="overlayText container80">
-        <h1>Coxhoe Trail Run</h1>
-        <h1>25th September 2022</h1>
-        <h1>Registrations Open </h1>
+        <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          Coxhoe Trail Run
+        </motion.h1>
 
-        <Button href="#registraion">Register Today</Button>
+        <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          25th September 2022
+        </motion.h1>
+        <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          Registrations Open{" "}
+        </motion.h1>
+
+        <Button
+          href="#registraion"
+          as={motion.a}
+          animate={{ x: 0 }}
+          initial={{ x: "-100vw" }}
+        >
+          Register Today
+        </Button>
       </div>
     </HeroVideoSection>
   );

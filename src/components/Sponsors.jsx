@@ -12,6 +12,26 @@ const SliderContainer = styled.section`
   height: 100%;
 
   --swiper-theme-color: white !important;
+
+  @media screen and (max-width: 700px) {
+    .swiper-button-next {
+      right: 0px !important;
+    }
+
+    .swiper-button-prev {
+      left: 0px !important;
+    }
+
+    h3 {
+      font-size: 1.2rem !important;
+    }
+
+    p {
+      width: 90% !important;
+      font-size: 0.8rem !important;
+    }
+  }
+
   .slider {
     width: 80%;
     margin-left: auto;

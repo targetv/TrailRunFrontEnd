@@ -3,6 +3,10 @@ import Logo from "../images/logo_activelife.png";
 import { rem } from "polished";
 
 const AboutUsContainer = styled.section`
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(auto-fit, minmax(${rem("200px")}, 400px));
+  }
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(${rem("200px")}, 1fr));
   height: ${rem("600px")};
@@ -26,6 +30,10 @@ const AboutUsContainer = styled.section`
     display: grid;
     place-items: center;
     grid-gap: ${rem("10px")};
+  }
+
+  img {
+    padding-bottom: 20px;
   }
 `;
 

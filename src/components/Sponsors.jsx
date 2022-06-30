@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import "swiper/swiper-bundle.css";
 import { rem } from "polished";
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper/core";
@@ -57,6 +57,11 @@ const SliderContainer = styled.section`
     }
   }
 
+  .slide-small {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr) !important;
+  }
+
   .singleText {
     grid-template-rows: 1fr;
   }
@@ -74,9 +79,6 @@ const SponsorsComponent = () => {
         centeredSlides={true}
         autoplay={{ delay: 8000, disableOnInteraction: false }}
       >
-        <SwiperSlide className="slide singleText">
-          <h3> T.W Steam Heating Services Ltd</h3>
-        </SwiperSlide>
         <SwiperSlide className="slide">
           <h3>Breedon</h3>
           <p>
@@ -89,6 +91,14 @@ const SponsorsComponent = () => {
             again to be supporting and working with Active Life Coxhoe, as
             sponsors of this year’s Coxhoe Trail Run.
           </p>
+        </SwiperSlide>
+        <SwiperSlide className="slide singleText">
+          <h3> T.W Steam Heating Services Ltd</h3>
+        </SwiperSlide>
+        <SwiperSlide className="slide slide-small">
+          <h3>Flowers by Michell - Coxhoe</h3>
+          <h3>Alderson building services - Durham</h3>
+          <h3>GT cleaning machines </h3>
         </SwiperSlide>
       </Swiper>
     </SliderContainer>

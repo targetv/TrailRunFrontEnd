@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import "swiper/swiper-bundle.css";
 import { rem } from "polished";
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper/core";
@@ -99,6 +99,10 @@ const SponsorsComponent = () => {
           <h3>Flowers by Michell - Coxhoe</h3>
           <h3>Alderson building services - Durham</h3>
           <h3>GT cleaning machines </h3>
+        </SwiperSlide>
+        <SwiperSlide className="slide slide-small">
+          <h3>S Cars - Coxhoe - Spennymoor</h3>
+          <h3>Durham Mums On The Run / Community Running Group</h3>
         </SwiperSlide>
       </Swiper>
     </SliderContainer>
